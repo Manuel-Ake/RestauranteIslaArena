@@ -1,1 +1,167 @@
-/* You can add global styles to this file, and also import other style files */
+
+/* ===== ESTILOS GLOBALES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ===== PALETA DE COLORES ===== */
+:root {
+  --azul-oscuro: #005792;
+  --azul-medio: #0074b7;
+  --azul-claro: #00a8e8;
+  --azul-mar: #006994;
+  --blanco: #ffffff;
+  --gris-claro: #f2f2f2;
+  --acento: #ff7e30;
+  --acento-hover: #ff6a0d;
+}
+
+/* ===== TIPOGRAFÍA GLOBAL ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  color: var(--azul-oscuro);
+  margin-bottom: 0.8rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* ===== BOTONES ===== */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-family: 'Arial', sans-serif;
+}
+
+.btn-primary {
+  background-color: var(--azul-medio);
+  color: var(--blanco);
+}
+
+.btn-primary:hover {
+  background-color: var(--azul-oscuro);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+  background-color: var(--acento);
+  color: var(--blanco);
+}
+
+.btn-secondary:hover {
+  background-color: var(--acento-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--azul-medio);
+  color: var(--azul-medio);
+}
+
+.btn-outline:hover {
+  background-color: var(--azul-medio);
+  color: var(--blanco);
+}
+
+/* ===== CONTENEDOR SUPERIOR ===== */
+.whatsapp {
+  background-color: #25D366;
+}
+
+.whatsapp:hover {
+  background-color: #128C7E;
+  transform: translateY(-2px);
+}
+
+.carrito {
+  background-color: var(--azul-claro);
+}
+
+.carrito:hover {
+  background-color: var(--azul-medio);
+  transform: translateY(-2px);
+}
+
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 992px) {
+  .contenedor_lot {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .barra-busqueda {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .barra-busqueda input {
+    width: 100%;
+  }
+
+  .contenedor_a {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .menu-acciones {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .contenedor_a {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+}
