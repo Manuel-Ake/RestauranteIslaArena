@@ -1,0 +1,5 @@
+services:
+  frontend:
+    build: .  # ← Construye desde la raíz actual
+    ports:
+      - "4200:8080"
