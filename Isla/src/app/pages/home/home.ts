@@ -17,7 +17,7 @@ export class Home implements OnInit, OnDestroy {
   ];
 
   textos = [
-    'Lo mejor de la isla en un solo lugar',
+    'Lo mejor de la isla en un solo lugar para disfrutar',
     'Ven y disfruta de nuestras deliciosas comidas',
     'El mejor ambiente para compartir con amigos',
     'Sabores que te transportan al paraíso'
