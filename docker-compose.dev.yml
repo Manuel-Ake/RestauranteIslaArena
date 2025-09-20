@@ -1,0 +1,10 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4200:4200"    # ← Cambia 8080 por 4200
+    volumes:
+      - ./Isla:/app
+      - /app/node_modules
