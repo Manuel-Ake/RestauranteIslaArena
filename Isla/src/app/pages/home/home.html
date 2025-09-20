@@ -1,0 +1,48 @@
+<div class="main-container">
+  <div class="conteiner_titulos">
+    <h1>¡Bienvenido a ISLA ARENA!</h1>
+    <h2>TU RESTAURANTE DE CONFIANZA</h2>
+  </div>
+
+  <div class="container">
+    <div class="carrusel">
+      <div class="carrusel-inner">
+        <!-- MOSTRAR TODAS las imágenes, solo una visible -->
+        <img *ngFor="let imagen of imagenes; let i = index" 
+             [src]="'img/' + imagen" 
+             [class.active]="i === imagenActual"
+             alt="Imagen carrusel {{i + 1}}"
+             class="carrusel-img">
+        
+        <!-- Botones de navegación -->
+        <button class="carrusel-control prev" (click)="imagenAnterior()">
+          &#10094;
+        </button>
+        <button class="carrusel-control next" (click)="siguienteImagen()">
+          &#10095;
+        </button>
+        
+        <!-- Indicadores -->
+        <div class="carrusel-indicadores">
+          <span *ngFor="let img of imagenes; let i = index" 
+                [class.active]="i === imagenActual"
+                (click)="cambiarImagen(i)"></span>
+        </div>
+        
+        <!-- Textos -->
+        <div class="textos">
+          <p>{{ textos[imagenActual] }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conteiner_texto">
+    <span class="texto">
+      <p>
+        En ISLA ARENA, nos enorgullece ofrecerte una experiencia culinaria inigualable con los mejores mariscos frescos y platillos deliciosos. Nuestro compromiso es brindarte un servicio excepcional y un ambiente acogedor para que disfrutes de cada visita. Ven y descubre por qué somos el restaurante favorito de la isla.<br>
+        ¡Te esperamos con los brazos abiertos!
+      </p>
+    </span>
+  </div>
+</div>
