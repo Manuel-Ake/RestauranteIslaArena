@@ -1,1 +1,14 @@
-<p>food works!</p>
+<h1 class="titulo">SOY ALIMENTOS</h1>
+<h4 class="subtitulo">RIKOS GUISOS</h4>
+
+<div class="menu-container">
+  <div *ngFor="let platillo of saucer" class="platillo-card">
+    <img [src]="platillo.imagen" alt="{{platillo.nombre}}">
+    <div class="platillo-info">
+      <h3>{{ platillo.nombre }}</h3>
+      <p>{{ platillo.descripcion }}</p>
+      <strong class="precio">{{ platillo.precio | currency }}</strong>
+      <button class="btn-agregar">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
