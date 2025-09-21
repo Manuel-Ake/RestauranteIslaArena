@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 // RUTA CORREGIDA - la que tenías era incorrecta
-import { CartService, CartItem } from '../../core/service/cart.services/cart.services';
+import { CartService, CartItem } from '../../core/interface/cart.services';
 
 @Component({
   selector: 'app-mycart',

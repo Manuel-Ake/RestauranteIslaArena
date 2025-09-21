@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Saucer } from '../../core/models/saucer';
 import { foodService } from '../../core/service/foodService';
 // Ajusta esta ruta según donde esté realmente cart.service.ts
-import { CartService, CartItem } from '../../core/service/cart.services/cart.services';
+import { CartService, CartItem } from '../../core/interface/cart.services';
 
 @Component({
   selector: 'app-food',
