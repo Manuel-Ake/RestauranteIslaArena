@@ -4,9 +4,6 @@ import { Saucer } from '../../core/models/saucer';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-
-
-
 @Component({
   selector: 'app-up-food-amd',
   imports: [CommonModule, FormsModule],

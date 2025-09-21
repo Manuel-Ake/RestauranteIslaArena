@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+// RUTA CORREGIDA - la que tenías era incorrecta
+import { CartService, CartItem } from '../../core/service/cart.services/cart.services';
 
 @Component({
   selector: 'app-mycart',
@@ -14,13 +16,16 @@ export class Mycart implements OnInit, OnDestroy {
   minutes: number = 14;
   seconds: number = 59;
   private timerInterval: any;
+  cartItems: CartItem[] = [];
 
   constructor(
     private router: Router,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
+    this.cartItems = this.cartService.getCartItems();
     this.startTimer();
   }
 
@@ -28,20 +33,20 @@ export class Mycart implements OnInit, OnDestroy {
     this.stopTimer();
   }
 
-  startTimer() {
+  private startTimer() {
     this.timerInterval = setInterval(() => {
       this.updateTimer();
-      this.cdRef.detectChanges(); // Forzar detección de cambios
+      this.cdRef.detectChanges();
     }, 1000);
   }
 
-  stopTimer() {
+  private stopTimer() {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
   }
 
-  updateTimer() {
+  private updateTimer() {
     if (this.seconds > 0) {
       this.seconds--;
     } else {
@@ -56,6 +61,18 @@ export class Mycart implements OnInit, OnDestroy {
 
   get formattedTime(): string {
     return `${this.minutes.toString().padStart(2, '0')}:${this.seconds.toString().padStart(2, '0')}`;
+  }
+
+  getTotal(): number {
+    return this.cartService.getTotal();
+  }
+
+  finalizarPedido() {
+    if (this.cartItems.length > 0) {
+      alert('¡Pedido realizado con éxito!');
+      this.cartService.clearCart();
+      this.cartItems = [];
+    }
   }
 
   continueShopping() {

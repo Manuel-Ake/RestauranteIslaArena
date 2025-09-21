@@ -2,13 +2,13 @@
   <!-- Encabezado del carrito -->
   <div class="cart-header">
     <h1>TU CARRITO</h1>
-    <div class="shipping-message">
-      <p>Todos los envios son gratuitos </p>
+    <div class="shipping-message" *ngIf="cartItems.length > 0">
+      <p>Todos los envios son gratuitos</p>
     </div>
   </div>
 
   <!-- Alerta de reserva -->
-  <div class="reservation-alert">
+  <div class="reservation-alert" *ngIf="cartItems.length > 0">
     <label class="alert-checkbox">
       <input type="checkbox" checked>
       <div class="alert-text">
@@ -32,33 +32,54 @@
       </div>
       
       <!-- Mensaje de carrito vacío -->
-      <div class="empty-cart-message">
+      <div class="empty-cart-message" *ngIf="cartItems.length === 0">
         <div class="empty-icon">🛒</div>
         <h3>Tu carrito está vacío</h3>
         <p>Agrega algunos productos deliciosos a tu carrito</p>
+      </div>
+
+      <!-- Productos en el carrito -->
+      <div *ngFor="let item of cartItems" class="table-row">
+        <div class="col-product">
+          <div class="product-info">
+            <h3>{{ item.nombre }}</h3>
+            <p>{{ item.descripcion }}</p>
+          </div>
+        </div>
+        <div class="col-price">
+          <span class="price">{{ item.precio | currency }}</span>
+        </div>
+        <div class="col-quantity">
+          <span class="quantity">1</span>
+        </div>
+        <div class="col-total">
+          <span class="total-price">{{ item.precio | currency }}</span>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Resumen del pedido -->
-  <div class="order-summary">
+  <div class="order-summary" *ngIf="cartItems.length > 0">
     <h2>RESUMEN DEL PEDIDO</h2>
     
     <div class="summary-details">
       <div class="summary-row">
         <span>Subtotal</span>
-        <span>$ 0.00</span>
+        <span>{{ getTotal() | currency }}</span>
       </div>
       <div class="summary-row total">
         <span>TOTAL:</span>
-        <span>$ 0.00</span>
+        <span>{{ getTotal() | currency }}</span>
       </div>
     </div>
   </div>
 
   <!-- Botones de acción -->
   <div class="cart-actions">
-    <button class="btn-checkout" disabled>FINALIZAR PEDIDO</button>
+    <button class="btn-checkout" [disabled]="cartItems.length === 0" (click)="finalizarPedido()">
+      FINALIZAR PEDIDO
+    </button>
     <button class="btn-continue" (click)="continueShopping()">SEGUIR COMPRANDO</button>
   </div>
 
