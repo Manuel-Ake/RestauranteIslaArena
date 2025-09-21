@@ -1,0 +1,69 @@
+.drink-page {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.drink-page h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.bebidas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.bebida-card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.bebida-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.bebida-card h3 {
+  color: #2c3e50;
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
+
+.bebida-card p {
+  color: #7f8c8d;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.precio {
+  display: block;
+  font-weight: bold;
+  color: #e74c3c;
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+
+.bebida-card button {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.bebida-card button:hover {
+  background: #219a52;
+}
