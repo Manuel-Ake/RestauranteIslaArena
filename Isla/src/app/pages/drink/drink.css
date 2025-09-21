@@ -1,69 +1,87 @@
-.drink-page {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+/* Hero principal */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #eaf4ff, #f5eaff);
+  padding: 60px;
+  min-height: 80vh;
 }
 
-.drink-page h2 {
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 30px;
-  font-size: 2rem;
+.hero-content {
+  max-width: 50%;
 }
 
-.bebidas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
+.hero-content h1 {
+  font-size: 3rem;
+  color: #1a1a1a;
 }
 
-.bebida-card {
-  background: white;
-  border-radius: 10px;
-  padding: 15px;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.bebida-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.bebida-card h3 {
-  color: #2c3e50;
-  margin: 10px 0;
+.hero-content p {
   font-size: 1.2rem;
+  margin: 20px 0;
+  color: #555;
 }
 
-.bebida-card p {
-  color: #7f8c8d;
-  margin-bottom: 10px;
-  font-size: 0.9rem;
-}
-
-.precio {
-  display: block;
-  font-weight: bold;
-  color: #e74c3c;
-  font-size: 1.1rem;
-  margin: 10px 0;
-}
-
-.bebida-card button {
+.hero-content button {
+  padding: 12px 24px;
+  font-size: 1rem;
   background: #27ae60;
   color: white;
   border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  width: 100%;
 }
 
-.bebida-card button:hover {
-  background: #219a52;
+.hero-content button:hover {
+  background: #219150;
+}
+
+/* Imagen hero */
+.hero-image img {
+  max-width: 400px;
+  border-radius: 15px;
+}
+
+/* Sección catálogo */
+.catalogo {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f9f9f9;
+}
+
+.catalogo h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: transform 0.2s;
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+.card h3 {
+  margin: 10px 0;
+  font-size: 1.3rem;
 }
