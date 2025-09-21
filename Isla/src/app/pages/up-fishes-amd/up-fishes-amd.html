@@ -1,1 +1,28 @@
-<p>up-fishes-amd works!</p>
+<div class="Subir_p">
+  <h2>SUBIR PLATILLOS</h2>
+
+  <div class="form-row">
+      <div class="form-group">
+      <input type="text" [(ngModel)]="nombre" placeholder="Nombre del platillo" class="form-input">
+    </div>
+
+    <div class="form-group">
+      <input type="text" [(ngModel)]="descripcion" placeholder="Descripción del platillo" class="form-input">
+    </div>
+
+    <div class="form-group">
+      <input type="number" [(ngModel)]="precio" placeholder="Precio del platillo" class="form-input">
+    </div>
+  </div>
+
+  <div class="file-upload-container">
+      <label for="fileInput" class="file-upload-label">
+        <span class="upload-icon">📁</span>
+        <span class="upload-text">Seleccionar archivo</span>
+      </label>
+      <input id="fileInput" type="file" (change)="OnfileSelected($event)" class="file-input">
+      <p class="file-info">{{ imageBase64 ? 'Archivo seleccionado' : 'Sin archivos seleccionados' }}</p>
+    </div>
+
+  <button (click)="subirsaucer()" class="submit-btn">Subir Platillo</button>
+</div>
