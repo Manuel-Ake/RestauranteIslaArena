@@ -1,48 +1,129 @@
-<div class="main-container">
-  <div class="conteiner_titulos">
-    <h1>¡Bienvenido a ISLA ARENA!</h1>
+<section class="hero">
+  <!-- Texto BIENVENIDO ARRIBA de la imagen -->
+  <div class="welcome-title">
+    <h1>BIENVENIDO A ISLA ARENA</h1>
     <h2>TU RESTAURANTE DE CONFIANZA</h2>
   </div>
 
-  <div class="container">
-    <div class="carrusel">
-      <div class="carrusel-inner">
-        <!-- MOSTRAR TODAS las imágenes, solo una visible -->
-        <img *ngFor="let imagen of imagenes; let i = index" 
-             [src]="'img/' + imagen" 
-             [class.active]="i === imagenActual"
-             alt="Imagen carrusel {{i + 1}}"
-             class="carrusel-img">
-        
-        <!-- Botones de navegación -->
-        <button class="carrusel-control prev" (click)="imagenAnterior()">
-          &#10094;
-        </button>
-        <button class="carrusel-control next" (click)="siguienteImagen()">
-          &#10095;
-        </button>
-        
-        <!-- Indicadores -->
-        <div class="carrusel-indicadores">
-          <span *ngFor="let img of imagenes; let i = index" 
-                [class.active]="i === imagenActual"
-                (click)="cambiarImagen(i)"></span>
-        </div>
-        
-        <!-- Textos -->
-        <div class="textos">
-          <p>{{ textos[imagenActual] }}</p>
-        </div>
-      </div>
+  <div class="carousel">
+    <!-- Imágenes del carrusel -->
+    <img *ngFor="let image of images; let i = index" 
+         [src]="image" 
+         [class.active]="i === currentIndex"
+         [alt]="'Imagen ' + (i + 1)"
+         class="carousel-image">
+    
+    <!-- Botones de navegación -->
+    <button class="carousel-control prev" (click)="prevSlide()">&#10094;</button>
+    <button class="carousel-control next" (click)="nextSlide()">&#10095;</button>
+    
+    <!-- Indicadores -->
+    <div class="carousel-indicators">
+      <span *ngFor="let image of images; let i = index" 
+            [class.active]="i === currentIndex"
+            (click)="goToSlide(i)"></span>
+    </div>
+    
+    <!-- Texto sobre imagen -->
+    <div class="carousel-text">
+      <p>{{ texts[currentIndex] }}</p>
     </div>
   </div>
+</section>
 
-  <div class="conteiner_texto">
-    <span class="texto">
+<!-- Sección de Características -->
+<section class="features">
+  <div class="features-container">
+    <div class="feature-card">
+      <div class="feature-icon">🍽️</div>
+      <h3>Comida Excepcional</h3>
+      <p>Los mejores mariscos frescos y platillos tradicionales preparados con ingredientes de la más alta calidad.</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">🌊</div>
+      <h3>Ambiente Único</h3>
+      <p>Disfruta de la mejor vista al mar en un ambiente cálido y acogedor perfecto para cualquier ocasión.</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">⭐</div>
+      <h3>Servicio Premium</h3>
+      <p>Nuestro personal está comprometido en brindarte una experiencia gastronómica inolvidable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Texto de bienvenida -->
+<section class="welcome-section">
+  <div class="welcome-container">
+    <div class="welcome-text">
       <p>
-        En ISLA ARENA, nos enorgullece ofrecerte una experiencia culinaria inigualable con los mejores mariscos frescos y platillos deliciosos. Nuestro compromiso es brindarte un servicio excepcional y un ambiente acogedor para que disfrutes de cada visita. Ven y descubre por qué somos el restaurante favorito de la isla.<br>
+        En ISLA ARENA, nos enorgullece ofrecerte una experiencia culinaria inigualable 
+        con los mejores mariscos frescos y platillos deliciosos. Nuestro compromiso es 
+        brindarte un servicio excepcional y un ambiente acogedor para que disfrutes de 
+        cada visita. Ven y descubre por qué somos el restaurante favorito de la isla.
+        <br><br>
         ¡Te esperamos con los brazos abiertos!
       </p>
-    </span>
+    </div>
   </div>
-</div>
+</section>
+
+<!-- Footer NUEVO -->
+<footer class="footer">
+  <div class="footer-content">
+    
+    <!-- Productos -->
+    <div class="footer-section">
+      <h3>Productos</h3>
+      <ul>
+        <li><a href="#" onclick="window.open('#', '_blank')">Ensalada</a></li>
+        <li><a href="#" onclick="window.open('#', '_blank')">Ceviche Coctel</a></li>
+        <li><a href="#" onclick="window.open('#', '_blank')">Camaron al Mojo de Ajo</a></li>
+        <li><a href="#" onclick="window.open('#', '_blank')">Pulpo a la Mexicana</a></li>
+      </ul>
+    </div>
+
+    <!-- Información -->
+    <div class="footer-section">
+      <h3>Información</h3>
+      <ul>
+        <li><a href="#">Facturación</a></li>
+        <li><a href="#">Política de Envíos</a></li>
+        <li><a href="#">Cambios y Devoluciones</a></li>
+        <li><a href="#">Aviso de Privacidad</a></li>
+        <li><a href="#">Contáctanos</a></li>
+        <li><a href="#">FAQs</a></li>
+      </ul>
+    </div>
+
+    <!-- Síguenos -->
+    <div class="footer-section">
+      <h3>Síguenos</h3>
+      <div class="social-links">
+        <a href="https://www.facebook.com/isla.arena.2025" target="_blank" class="social-link">
+          <img src="img/facebook.png" alt="Facebook" width="20">
+          Facebook
+        </a>
+        <a href="https://maps.app.goo.gl/bcdaT4TSF24f2pPf6" target="_blank" class="social-link">
+          <img src="img/ubicacion.png" alt="Ubicación" width="20">
+          Ubicación
+        </a>
+      </div>
+      
+      <div class="contact-info">
+        <p>Los productos más frescos desde nuestro restaurante a tu mesa.</p>
+        <p class="telefono">📞 996 961 1436</p>
+        <p class="email">✉️ isla.arena.2025@facebook.com</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-bottom">
+    <img src="img/logo.png" alt="Isla Arena" class="logo-footer">
+    <p>2024 © Todos Los Derechos Reservados. ISLA ARENA</p>
+  </div>
+</footer>

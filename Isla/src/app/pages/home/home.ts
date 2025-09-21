@@ -9,71 +9,58 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./home.css']
 })
 export class Home implements OnInit, OnDestroy {
-  imagenes = [
-    'img1.jpg',
-    'img2.jpg', 
-    'img3.jpg',
-    'img4.jpg'
+  images = [
+    'img/img1.jpg',
+    'img/img2.jpg', 
+    'img/img3.jpg',
+    'img/img4.jpg'
   ];
 
-  textos = [
+  texts = [
     'Lo mejor de la isla en un solo lugar para disfrutar',
     'Ven y disfruta de nuestras deliciosas comidas',
     'El mejor ambiente para compartir con amigos',
     'Sabores que te transportan al paraíso'
   ];
 
-  imagenActual = 0;
+  currentIndex = 0;
   private intervalId: any;
 
   ngOnInit() {
-    console.log('✅ Carrusel INICIADO');
-    console.log('🖼️ Imágenes:', this.imagenes);
-    console.log('📍 Imagen actual:', this.imagenActual);
-    this.iniciarCarrusel();
+    this.startCarousel();
   }
 
   ngOnDestroy() {
-    this.detenerCarrusel();
+    this.stopCarousel();
   }
 
-  private iniciarCarrusel() {
-    console.log('⏰ Iniciando temporizador (4 segundos)');
+  private startCarousel() {
     this.intervalId = setInterval(() => {
-      console.log('🔄 Cambio AUTOMÁTICO de imagen');
-      this.siguienteImagen();
-    }, 4000);
+      this.nextSlide();
+    }, 5000);
   }
 
-  private detenerCarrusel() {
+  private stopCarousel() {
     if (this.intervalId) {
-      console.log('⏹️ Deteniendo temporizador');
       clearInterval(this.intervalId);
     }
   }
 
-  siguienteImagen() {
-    const nuevaImagen = (this.imagenActual + 1) % this.imagenes.length;
-    console.log('▶️ Siguiente imagen:', this.imagenActual, '→', nuevaImagen);
-    this.imagenActual = nuevaImagen;
-    this.reiniciarTemporizador();
+  nextSlide() {
+    this.currentIndex = (this.currentIndex + 1) % this.images.length;
   }
 
-  imagenAnterior() {
-    const nuevaImagen = (this.imagenActual - 1 + this.imagenes.length) % this.imagenes.length;
-    console.log('◀️ Imagen anterior:', this.imagenActual, '→', nuevaImagen);
-    this.imagenActual = nuevaImagen;
-    this.reiniciarTemporizador();
+  prevSlide() {
+    this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
   }
 
-  cambiarImagen(index: number) {
-    console.log('🔘 Cambiando a imagen:', index);
-    this.imagenActual = index;
-    this.reiniciarTemporizador();
+  goToSlide(index: number) {
+    this.currentIndex = index;
+    this.restartCarousel();
   }
 
-  private reiniciarTemporizador() {
-    this.detenerCarrusel();
-    this.iniciarCarrusel();
+  private restartCarousel() {
+    this.stopCarousel();
+    this.startCarousel();
   }
 }
