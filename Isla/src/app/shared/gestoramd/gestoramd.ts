@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-gestoramd',
   imports: [CommonModule],
   templateUrl: './gestoramd.html',
