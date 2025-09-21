@@ -6,6 +6,7 @@ import { Food } from './pages/food/food';
 import { Celebrates } from './pages/celebrates/celebrates';
 import { Promotions } from './pages/promotions/promotions';
 import { Login } from './shared/login/login';
+import { Gestoramd } from './shared/gestoramd/gestoramd';
 
 export const routes: Routes = [
   {path: '', component:Header, children:[
@@ -17,4 +18,5 @@ export const routes: Routes = [
   ] },
 
   {path:'Login', component: Login, pathMatch:'full'},
+  {path:'gestoramd', component:Gestoramd, pathMatch:'full'},
 ];
