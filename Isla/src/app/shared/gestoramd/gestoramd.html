@@ -1,59 +1,58 @@
 <div class="gestoradmi">
     <div class="contenedor-gestoradmi">
-        <div class="header-gestor">
-            <h1>Bienvenido Gestor Administrativo</h1>
-            <p>Desde aqui podras gestionar los productos, categorias y pedidos</p>
-        </div>
-
+        <!-- Panel lateral -->
         <div class="Contenedor-gestor">
             <div class="gestor-opciones">
-
                 <button (click)="setSection('resumen')">Resumen</button>
                 <button (click)="setSection('subir_p')">Subir Platillos</button>
                 <button (click)="setSection('subir_pro')">Subir Promociones</button>
                 <button (click)="setSection('crear_mesas')">Crear Mesas</button>
                 <button (click)="setSection('gestionar_inventarios')">Gestionar Inventarios</button>
-
             </div>
         </div>
 
-        <div class="RESUMEN" *ngIf="activeSection === 'resumen'">
-            <h2>RESUMEN</h2>
-            <p>Aqui podras ver un resumen de las actividades recientes</p>
+        <!-- Contenido principal -->
+        <div class="contenido-principal">
+            <div class="header-gestor">
+                <h1>Bienvenido Gestor Administrativo</h1>
+                <p>Desde aquí podrás gestionar los productos, categorías y pedidos</p>
+            </div>
 
+            <div class="RESUMEN" *ngIf="activeSection === 'resumen'">
+                <h2>RESUMEN</h2>
+                <p>Aquí podrás ver un resumen de las actividades recientes</p>
+                <!-- Contenido del resumen -->
+            </div>
 
+            <div class="Subir_p" *ngIf="activeSection === 'subir_p'">
+                <h2>SUBIR PLATILLOS</h2>
+                <input type="file">
+                <input type="text" placeholder="Nombre del platillo">
+                <input type="text" placeholder="Descripción del platillo">
+                <input type="number" placeholder="Precio del platillo">
+                <button>Subir Platillo</button>
+            </div>
 
+            <div class="Subir_pro" *ngIf="activeSection === 'subir_pro'">
+                <h2>SUBIR PROMOCIONES</h2>
+                <input type="file">
+                <input type="text" placeholder="Nombre de la promoción">
+                <input type="text" placeholder="Descripción de la promoción">
+                <input type="number" placeholder="Precio de la promoción">
+                <button>Subir Promoción</button>
+            </div>
 
+            <div class="Crear_mesas" *ngIf="activeSection === 'crear_mesas'">
+                <h2>CREAR MESAS</h2>
+                <input type="text" placeholder="NÚMERO DE MESA">
+                <input type="text" placeholder="NOMBRE DE LA MESA">
+                <button>Guardar Mesa</button>
+            </div>
 
-        </div>
-
-        <div class="Subir_p" *ngIf="activeSection === 'subir_p'">
-           <h2>SUBIR PLATILLOS</h2>
-            <input type="file" >
-            <input type="text" placeholder="Nombre del platillo">
-            <input type="text" placeholder="Descripción del platillo">
-            <input type="number" placeholder="Precio del platillo">
-            <button >Subir Platillo</button>
-
-        </div>
-
-        <div class="Subir_pro" *ngIf="activeSection === 'subir_pro'">
-            <h2>SUBIR PROMOCIONES</h2>
-            <input type="file" >
-            <input type="text" placeholder="Nombre de la promoción">
-            <input type="text" placeholder="Descripción de la promoción">
-            <input type="number" placeholder="Precio de la promoción">
-            <button >Subir Promoción</button>
-        </div>
-
-        <div class="Crear_mesas" *ngIf="activeSection === 'crear_mesas'">
-            <h2>CREAR MESAS</h2>
-            <input type="text" placeholder="NUMERO DE MESA">
-            <input type="text" placeholder="NOMBRE DE LA MESA">
-        </div>
-
-        <div class="gestionar_inventarios" *ngIf="activeSection === 'gestionar_inventarios'">
-            <h2>GESTION DE GASTOS E INVERSIONES</h2>
+            <div class="gestionar_inventarios" *ngIf="activeSection === 'gestionar_inventarios'">
+                <h2>GESTIÓN DE GASTOS E INVERSIONES</h2>
+                <p>Módulo de gestión de inventarios en desarrollo</p>
+            </div>
         </div>
     </div>
 </div>
