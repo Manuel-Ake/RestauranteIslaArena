@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 /*import { Router } from '@angular/router';*/
 import { RouterOutlet } from '@angular/router';
 import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-gestoramd',
-  imports: [CommonModule, RouterOutlet,FormsModule],
+  imports: [CommonModule, RouterOutlet, FormsModule, RouterLink],
   templateUrl: './gestoramd.html',
   styleUrl: './gestoramd.css'
 })
