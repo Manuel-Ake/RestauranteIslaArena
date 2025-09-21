@@ -1,50 +1,58 @@
+<!-- BARRA SUPERIOR -->
 <div class="contenedor_superior bg-azul-mar">
   <div class="contenedor_lot">
+    <!-- LOGO -->
     <img class="logo1" src="img/logo.png" alt="Logo de Mariscos">
 
+    <!-- BARRA DE BÚSQUEDA -->
     <div class="barra-busqueda">
       <input type="text" placeholder="Buscar mariscos, platillos, bebidas...">
       <button class="btn_buscar">
         <img src="img/busqueda.png" alt="Buscar">
       </button>
     </div>
+
+    <!-- MENÚ DE ACCIONES -->
     <nav class="menu-acciones">
       <a class="whatsapp" href="https://web.whatsapp.com/">
         <img src="img/whasap.png" alt="WhatsApp">
         Whatsapp
       </a>
-      <a class="carrito" href=""> <img src="img/carrito.png" alt=""> Mi carrito</a>
+      <a class="carrito" href="">
+        <img src="img/carrito.png" alt="Carrito"> Mi carrito
+      </a>
 
-        <div class="desplegar_menu">
-          <div class="menu-trigger">
-            <img src="img/icons8-menú-50.png" alt="">
-            <p>Herramientas</p>
-          </div>
-          <div class="opciones-menu">
-            <a routerLink="Login" class="opcion-menu">Administrador</a>
-
-          </div>
+      <!-- MENÚ DESPLEGABLE -->
+      <div class="desplegar_menu">
+        <div class="menu-trigger">
+          <img src="img/icons8-menú-50.png" alt="">
+          <p>Herramientas</p>
         </div>
-
+        <div class="opciones-menu">
+          <a routerLink="Login" class="opcion-menu">Administrador</a>
+        </div>
+      </div>
     </nav>
   </div>
 </div>
 
-
-<div class="contenedor_casicentro nav-mariscos">
+<!-- MENÚ DE NAVEGACIÓN (ADAPTADO A TU CSS) -->
+<div class="contenedor_casicentro">
   <div class="contenedor_a">
-    <a  routerLink="Home" >INICIO</a>
-    <a  routerLink="Drink" >BEBIDAS</a>
-    <a  routerLink="Food">PLATILLOS</a>
-    <a  routerLink="">ESPECIALES EDL MAR</a>
-    <a  routerLink="prmotion" >PROMOCIONES</a>
-    <a  routerLink="celebrate">FESTEJA CON NOSTROS </a>
-
-
+    <a (click)="goHome()">INICIO</a>
+    <a routerLink="Drink" (click)="setHome(false)">BEBIDAS</a>
+    <a routerLink="Food" (click)="setHome(false)">PLATILLOS</a>
+    <a routerLink="special" (click)="setHome(false)">ESPECIALES DEL MAR</a>
+    <a routerLink="prmotion" (click)="setHome(false)">PROMOCIONES</a>
+    <a routerLink="celebrate" (click)="setHome(false)">FESTEJA CON NOSOTROS</a>
   </div>
 </div>
 
-<router-outlet></router-outlet>
+<!-- CONTENIDO PRINCIPAL -->
+<div class="Home_visible" *ngIf="homeActive">
+  <app-home></app-home>
+</div>
+<router-outlet *ngIf="!homeActive"></router-outlet>
 
 <!--
  Rutas hijas <router-outlet></router-outlet> -->
