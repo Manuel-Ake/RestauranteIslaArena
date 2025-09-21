@@ -7,6 +7,13 @@ import { Celebrates } from './pages/celebrates/celebrates';
 import { Promotions } from './pages/promotions/promotions';
 import { Login } from './shared/login/login';
 import { Gestoramd } from './shared/gestoramd/gestoramd';
+import { UpResumeAmd } from './pages/up-resume-amd/up-resume-amd';
+import { UpDrinkAmd } from './pages/up-drink-amd/up-drink-amd';
+import { UpFoodAmd } from './pages/up-food-amd/up-food-amd';
+import { UpFishesAmd } from './pages/up-fishes-amd/up-fishes-amd';
+import { UpPromotionAmd } from './pages/up-promotion-amd/up-promotion-amd';
+import { UpCreatewaiterAmd } from './pages/up-createwaiter-amd/up-createwaiter-amd';
+import { UpCelebratesAmd } from './pages/up-celebrates-amd/up-celebrates-amd';
 
 export const routes: Routes = [
   {path: '', component:Header, children:[
@@ -18,5 +25,13 @@ export const routes: Routes = [
   ] },
 
   {path:'Login', component: Login, pathMatch:'full'},
-  {path:'gestoramd', component:Gestoramd, pathMatch:'full'},
+  {path:'gestoramd', component:Gestoramd, children:[
+      {path:'upresumen', component:UpResumeAmd},
+      {path:'updrink', component:UpDrinkAmd},
+      {path:'upfood', component:UpFoodAmd},
+      {path:'upfish', component:UpFishesAmd},
+      {path:'uppromotion', component:UpPromotionAmd},
+      {path:'celebrae', component:UpCelebratesAmd},
+      {path:'cwaiter', component:UpCreatewaiterAmd}
+  ]},
 ];
