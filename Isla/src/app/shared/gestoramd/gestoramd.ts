@@ -1,23 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-<<<<<<< HEAD
 /*import { Router } from '@angular/router';*/
 import { Saucer } from '../../core/models/saucer';
 import { foodService } from '../../core/service/foodService';
-=======
 import { RouterOutlet } from '@angular/router';
 import { RouterLink } from '@angular/router';
->>>>>>> 1bb5236ff2f3baa46919914feecf5b8d34d2c9d9
 
 @Component({
   standalone: true,
   selector: 'app-gestoramd',
-<<<<<<< HEAD
-  imports: [CommonModule, FormsModule],
-=======
   imports: [CommonModule, RouterOutlet, RouterLink],
->>>>>>> 1bb5236ff2f3baa46919914feecf5b8d34d2c9d9
   templateUrl: './gestoramd.html',
   styleUrl: './gestoramd.css'
 })
