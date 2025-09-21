@@ -1,225 +1,245 @@
-.gestoradmi {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f0f4f8 0%, #e6e9f0 100%);
-  font-family: 'Arial', sans-serif;
-  padding: 20px;
+/* Estilos generales */
+.admin-container {
+  height: 100vh;
+  background: linear-gradient(135deg, #e6f7ff 0%, #f0f8ff 100%);
 }
 
-.contenedor-gestoradmi {
+.admin-layout {
   display: flex;
-  max-width: 1400px;
-  margin: 0 auto;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  height: 85vh;
+  height: 100%;
 }
 
-.Contenedor-gestor {
-  width: 250px;
-  background: linear-gradient(180deg, #005792 0%, #0074b7 100%);
-  padding: 25px 0;
-}
-
-.gestor-opciones {
+/* Panel lateral - Tema azul marino */
+.admin-sidebar {
+  width: 280px;
+  background: linear-gradient(to bottom, #005792, #002B5B);
+  color: white;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 0 15px;
+  box-shadow: 0 0 15px rgba(0, 45, 90, 0.2);
+  z-index: 10;
 }
 
-.gestor-opciones button {
-  text-align: left;
-  padding: 15px 20px;
-  background: transparent;
-  border: none;
-  color: white;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 15px;
+.sidebar-header {
+  padding: 25px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.gestor-opciones button:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateX(5px);
-}
-
-.gestor-opciones button:active {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-.contenido-principal {
-  flex: 1;
-  padding: 30px;
-  overflow-y: auto;
-}
-
-.header-gestor {
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 2px solid #eaeaea;
-}
-
-.header-gestor h1 {
-  color: #005792;
-  font-size: 32px;
-  margin-bottom: 10px;
-  font-weight: 700;
-}
-
-.header-gestor p {
-  color: #5a5a5a;
-  font-size: 16px;
-  margin: 0;
-}
-
-.RESUMEN, .Subir_p, .Subir_pro, .Crear_mesas, .gestionar_inventarios {
-  animation: fadeIn 0.4s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.RESUMEN h2, .Subir_p h2, .Subir_pro h2, .Crear_mesas h2, .gestionar_inventarios h2 {
-  color: #005792;
-  margin-bottom: 20px;
-  font-size: 26px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #00a8e8;
-  display: inline-block;
-}
-
-.RESUMEN p {
-  color: #5a5a5a;
-  font-size: 16px;
-}
-
-.Subir_p, .Subir_pro, .Crear_mesas {
-  background: #f9fafc;
-  padding: 25px;
-  border-radius: 12px;
-  border-left: 5px solid #00a8e8;
+.logo {
+  display: flex;
+  align-items: center;
   margin-bottom: 25px;
 }
 
-.Subir_p input, .Subir_pro input, .Crear_mesas input {
-  width: 100%;
-  padding: 14px 16px;
-  margin-bottom: 18px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 15px;
-  transition: all 0.3s ease;
-  display: block;
+.logo .waves {
+  font-size: 28px;
+  margin-right: 10px;
 }
 
-.Subir_p input:focus, .Subir_pro input:focus, .Crear_mesas input:focus {
-  outline: none;
-  border-color: #00a8e8;
-  box-shadow: 0 0 0 3px rgba(0, 168, 232, 0.2);
+.logo h2 {
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.5px;
 }
 
-.Subir_p button, .Subir_pro button, .Crear_mesas button {
-  background: #0074b7;
-  color: white;
-  border: none;
-  padding: 14px 25px;
-  border-radius: 8px;
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 12px;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
   font-weight: 600;
+  font-size: 14px;
+}
+
+.role {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* Navegación */
+.sidebar-nav {
+  flex: 1;
+  padding: 15px 0;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.sidebar-nav a:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  padding-left: 25px;
+}
+
+.sidebar-nav a.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-left: 4px solid #4facfe;
+}
+
+.sidebar-nav a.active::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: linear-gradient(to bottom, #4facfe, #00f2fe);
+}
+
+.nav-icon {
+  font-size: 20px;
+  margin-right: 15px;
+  width: 24px;
+  text-align: center;
+}
+
+.nav-text {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Footer del sidebar */
+.sidebar-footer {
+  padding: 15px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 15px;
+  border-radius: 6px;
 }
 
-.Subir_p button:hover, .Subir_pro button:hover, .Crear_mesas button:hover {
-  background: #005792;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 116, 183, 0.3);
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
 }
 
-.gestionar_inventarios {
-  background: #f9fafc;
-  padding: 25px;
-  border-radius: 12px;
-  border-left: 5px solid #00a8e8;
+/* Contenido principal */
+.admin-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.gestionar_inventarios p {
-  color: #5a5a5a;
-  font-style: italic;
+.content-header {
+  background: white;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Estilo para el input file */
-input[type="file"] {
-  padding: 12px;
-  background: #f0f4f8;
-  border: 2px dashed #ccc;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  width: 100%;
+.header-left h1 {
+  color: #005792;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.header-left p {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  padding: 10px 15px 10px 40px;
+  border: 1px solid #e2e8f0;
+  border-radius: 30px;
+  font-size: 14px;
+  width: 250px;
+  transition: all 0.3s;
+  background: #f8f9fa;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #4facfe;
+  box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.2);
+}
+
+.search-box i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+}
+
+.notifications {
+  position: relative;
   cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  background: #f8f9fa;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-input[type="file"]:hover {
-  border-color: #00a8e8;
-  background: #e8f4fc;
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff4757;
+  color: white;
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-  .contenedor-gestoradmi {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .Contenedor-gestor {
-    width: 100%;
-    padding: 15px;
-  }
-
-  .gestor-opciones {
-    flex-direction: row;
-    overflow-x: auto;
-    padding-bottom: 10px;
-  }
-
-  .gestor-opciones button {
-    white-space: nowrap;
-    margin-right: 8px;
-    margin-bottom: 0;
-    text-align: center;
-    padding: 12px 15px;
-  }
-
-  .contenido-principal {
-    padding: 20px;
-  }
-}
-
-@media (max-width: 576px) {
-  .gestor-opciones {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .gestor-opciones button {
-    flex: 1;
-    min-width: 120px;
-    margin: 4px;
-    font-size: 14px;
-    padding: 10px 12px;
-  }
-
-  .header-gestor h1 {
-    font-size: 26px;
-  }
-
-  .Subir_p, .Subir_pro, .Crear_mesas, .gestionar_inventarios {
-    padding: 20px 15px;
-  }
+.content-main {
+  flex: 1;
+  padding: 25px;
+  overflow-y: auto;
+  background: #f8f9fa;
 }

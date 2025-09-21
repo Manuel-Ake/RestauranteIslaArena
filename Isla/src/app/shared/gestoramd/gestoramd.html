@@ -1,15 +1,13 @@
-<div class="gestoradmi">
-    <div class="contenedor-gestoradmi">
-        <!-- Panel lateral -->
-        <div class="Contenedor-gestor">
-            <div class="gestor-opciones">
-                <button (click)="setSection('resumen')">Resumen</button>
-                <button (click)="setSection('subir_p')">Subir Platillos</button>
-                <button (click)="setSection('subir_pro')">Subir Promociones</button>
-                <button (click)="setSection('crear_mesas')">Crear Mesas</button>
-                <button (click)="setSection('gestionar_inventarios')">Gestionar Inventarios</button>
-            </div>
+<div class="admin-container">
+  <div class="admin-layout">
+    <!-- Panel lateral con tema azul marino -->
+    <div class="admin-sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <i class="waves">🌊</i>
+          <h2>Mar Admin</h2>
         </div>
+<<<<<<< HEAD
 
         <!-- Contenido principal -->
         <div class="contenido-principal">
@@ -53,6 +51,78 @@
                 <h2>GESTIÓN DE GASTOS E INVERSIONES</h2>
                 <p>Módulo de gestión de inventarios en desarrollo</p>
             </div>
+=======
+        <div class="user-info">
+          <div class="avatar">U</div>
+          <div class="user-details">
+            <span class="username">Usuario Admin</span>
+            <span class="role">Administrador</span>
+          </div>
+>>>>>>> 1bb5236ff2f3baa46919914feecf5b8d34d2c9d9
         </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a routerLink="upresumen" routerLinkActive="active">
+          <div class="nav-icon">📊</div>
+          <span class="nav-text">Resumen</span>
+        </a>
+        <a routerLink="updrink" routerLinkActive="active">
+          <div class="nav-icon">🥤</div>
+          <span class="nav-text">Subir Bebidas</span>
+        </a>
+        <a routerLink="upfood" routerLinkActive="active">
+          <div class="nav-icon">🍽️</div>
+          <span class="nav-text">Subir Platillos</span>
+        </a>
+        <a routerLink="upfish" routerLinkActive="active">
+          <div class="nav-icon">🐟</div>
+          <span class="nav-text">Especiales del Mar</span>
+        </a>
+        <a routerLink="uppromotion" routerLinkActive="active">
+          <div class="nav-icon">🎯</div>
+          <span class="nav-text">Promociones</span>
+        </a>
+        <a routerLink="celebrae" routerLinkActive="active">
+          <div class="nav-icon">🎉</div>
+          <span class="nav-text">Festeja</span>
+        </a>
+        <a routerLink="cwaiter" routerLinkActive="active">
+          <div class="nav-icon">👨‍💼</div>
+          <span class="nav-text">Crear Mesero</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="logout-btn">
+          <div class="nav-icon">🚪</div>
+          <span class="nav-text">Cerrar Sesión</span>
+        </div>
+      </div>
     </div>
+
+    <!-- Contenido principal -->
+    <div class="admin-content">
+      <header class="content-header">
+        <div class="header-left">
+          <h1>Panel de Administración</h1>
+          <p>Gestiona tu restaurante de manera eficiente</p>
+        </div>
+        <div class="header-right">
+          <div class="search-box">
+            <input type="text" placeholder="Buscar...">
+            <i>🔍</i>
+          </div>
+          <div class="notifications">
+            <i>🔔</i>
+            <span class="notification-badge">3</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="content-main">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </div>
 </div>
