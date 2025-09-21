@@ -5,6 +5,7 @@ import { Drink } from './pages/drink/drink';
 import { Food } from './pages/food/food';
 import { Celebrates } from './pages/celebrates/celebrates';
 import { Promotions } from './pages/promotions/promotions';
+import { Login } from './shared/login/login';
 
 export const routes: Routes = [
   {path: '', component:Header, children:[
@@ -14,4 +15,6 @@ export const routes: Routes = [
       {path:'celebrate', component: Celebrates},
       {path:'prmotion', component: Promotions}
   ] },
+
+  {path:'Login', component: Login, pathMatch:'full'},
 ];
