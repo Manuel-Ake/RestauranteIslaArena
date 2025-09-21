@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   imports: [FormsModule,CommonModule],
@@ -9,6 +9,7 @@ import { FormsModule, NgModel } from '@angular/forms';
   styleUrl: './login.css'
 })
 export class Login {
+  constructor(private router: Router) { }
   olvideContrasena = false;
   correo: string = '';
   contrasena: string = '';
@@ -17,7 +18,7 @@ export class Login {
       alert('Por favor llene todos los campos');
     }else{
       alert('Registro exitoso');
-      //this.router.navigate(['/gestor']);
+      this.router.navigate(['gestoramd']);
     }
   }
 
