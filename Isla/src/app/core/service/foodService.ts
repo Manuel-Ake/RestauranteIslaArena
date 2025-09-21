@@ -22,4 +22,26 @@ export class foodService {
     this.saucer.next(nuevos);
     localStorage.setItem('platillos', JSON.stringify(nuevos));
   }
+    // Agregar estos métodos a la clase foodService
+  eliminarPlatillo(saucer: Saucer) {
+    const actual = this.saucer.getValue();
+    const nuevos = actual.filter(p => 
+      p.nombre !== saucer.nombre || 
+      p.descripcion !== saucer.descripcion || 
+      p.precio !== saucer.precio
+    );
+    this.saucer.next(nuevos);
+    localStorage.setItem('platillos', JSON.stringify(nuevos));
+  }
+
+  actualizarPlatillo(original: Saucer, actualizado: Saucer) {
+    const actual = this.saucer.getValue();
+    const nuevos = actual.map(p => 
+      (p.nombre === original.nombre && 
+      p.descripcion === original.descripcion && 
+      p.precio === original.precio) ? actualizado : p
+    );
+    this.saucer.next(nuevos);
+    localStorage.setItem('platillos', JSON.stringify(nuevos));
+  }
 }
