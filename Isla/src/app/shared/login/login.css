@@ -1,0 +1,151 @@
+/* ===== ESTILOS PARA EL SISTEMA DE LOGIN ===== */
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-mar) 50%, var(--azul-claro) 100%);
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.caja {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 450px;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.caja::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--azul-oscuro), var(--azul-claro), var(--acento));
+}
+
+.login h2, .recuperar h2 {
+  text-align: center;
+  color: var(--azul-oscuro);
+  margin-bottom: 25px;
+  font-size: 28px;
+  position: relative;
+}
+
+.login h2::after, .recuperar h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--acento);
+  margin: 10px auto;
+  border-radius: 2px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--azul-oscuro);
+  font-size: 14px;
+}
+
+input {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--azul-claro);
+  box-shadow: 0 0 0 3px rgba(0, 168, 232, 0.2);
+}
+
+.botones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+button {
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:first-child {
+  background-color: var(--azul-medio);
+  color: white;
+}
+
+button:first-child:hover {
+  background-color: var(--azul-oscuro);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+button:last-child {
+  background-color: transparent;
+  color: var(--azul-medio);
+  border: 1px solid var(--azul-medio);
+}
+
+button:last-child:hover {
+  background-color: rgba(0, 116, 183, 0.1);
+}
+
+/* Estilos específicos para el formulario de recuperación */
+.recuperar {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Elemento decorativo marino */
+.caja::after {
+  content: '🐚';
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 24px;
+  opacity: 0.1;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .caja {
+    padding: 25px 20px;
+  }
+
+  .login h2, .recuperar h2 {
+    font-size: 24px;
+  }
+
+  input {
+    padding: 12px 14px;
+  }
+
+  button {
+    padding: 12px;
+  }
+}
