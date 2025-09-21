@@ -14,24 +14,34 @@ import { UpFishesAmd } from './pages/up-fishes-amd/up-fishes-amd';
 import { UpPromotionAmd } from './pages/up-promotion-amd/up-promotion-amd';
 import { UpCreatewaiterAmd } from './pages/up-createwaiter-amd/up-createwaiter-amd';
 import { UpCelebratesAmd } from './pages/up-celebrates-amd/up-celebrates-amd';
+import { Mycart } from './shared/mycart/mycart'; // ← IMPORTAR Mycart
 
 export const routes: Routes = [
-  {path: '', component:Header, children:[
-      {path:'Home', component: Home},
-      {path:'Drink', component: Drink },
-      {path:'Food', component:Food},
-      {path:'celebrate', component: Celebrates},
-      {path:'prmotion', component: Promotions}
-  ] },
+  {
+    path: '', 
+    component: Header, 
+    children: [
+      { path: 'Home', component: Home },
+      { path: 'Drink', component: Drink },
+      { path: 'Food', component: Food },
+      { path: 'celebrate', component: Celebrates },
+      { path: 'prmotion', component: Promotions },
+      { path: 'cart', component: Mycart } 
+    ]
+  },
 
-  {path:'Login', component: Login, pathMatch:'full'},
-  {path:'gestoramd', component:Gestoramd, children:[
-      {path:'upresumen', component:UpResumeAmd},
-      {path:'updrink', component:UpDrinkAmd},
-      {path:'upfood', component:UpFoodAmd},
-      {path:'upfish', component:UpFishesAmd},
-      {path:'uppromotion', component:UpPromotionAmd},
-      {path:'celebrae', component:UpCelebratesAmd},
-      {path:'cwaiter', component:UpCreatewaiterAmd}
-  ]},
+  { path: 'Login', component: Login, pathMatch: 'full' },
+  {
+    path: 'gestoramd', 
+    component: Gestoramd, 
+    children: [
+      { path: 'upresumen', component: UpResumeAmd },
+      { path: 'updrink', component: UpDrinkAmd },
+      { path: 'upfood', component: UpFoodAmd },
+      { path: 'upfish', component: UpFishesAmd },
+      { path: 'uppromotion', component: UpPromotionAmd },
+      { path: 'celebrae', component: UpCelebratesAmd },
+      { path: 'cwaiter', component: UpCreatewaiterAmd }
+    ]
+  },
 ];

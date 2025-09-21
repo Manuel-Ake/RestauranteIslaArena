@@ -1,0 +1,69 @@
+<div class="cart-container">
+  <!-- Encabezado del carrito -->
+  <div class="cart-header">
+    <h1>TU CARRITO</h1>
+    <div class="shipping-message">
+      <p>Todos los envios son gratuitos </p>
+    </div>
+  </div>
+
+  <!-- Alerta de reserva -->
+  <div class="reservation-alert">
+    <label class="alert-checkbox">
+      <input type="checkbox" checked>
+      <div class="alert-text">
+        <span class="alert-line">¡Apresurate! Otra persona también tiene uno de los productos</span>
+        <span class="alert-line">que te interesan en su carrito. Sin embargo, lo reservaremos</span>
+        <span class="alert-line"> para ti por los siguientes <strong class="timer">{{ formattedTime }}</strong> minutos.</span>
+      </div>
+    </label>
+  </div>
+
+  <!-- Productos en el carrito -->
+  <div class="cart-products">
+    <h2>PRODUCTO</h2>
+    
+    <div class="product-table">
+      <div class="table-header">
+        <div class="col-product">PRODUCTO</div>
+        <div class="col-price">PRECIO</div>
+        <div class="col-quantity">CANTIDAD</div>
+        <div class="col-total">TOTAL</div>
+      </div>
+      
+      <!-- Mensaje de carrito vacío -->
+      <div class="empty-cart-message">
+        <div class="empty-icon">🛒</div>
+        <h3>Tu carrito está vacío</h3>
+        <p>Agrega algunos productos deliciosos a tu carrito</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resumen del pedido -->
+  <div class="order-summary">
+    <h2>RESUMEN DEL PEDIDO</h2>
+    
+    <div class="summary-details">
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span>$ 0.00</span>
+      </div>
+      <div class="summary-row total">
+        <span>TOTAL:</span>
+        <span>$ 0.00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botones de acción -->
+  <div class="cart-actions">
+    <button class="btn-checkout" disabled>FINALIZAR PEDIDO</button>
+    <button class="btn-continue" (click)="continueShopping()">SEGUIR COMPRANDO</button>
+  </div>
+
+  <!-- Garantía -->
+  <div class="security-guarantee">
+    <p>Garantía de compra segura</p>
+  </div>
+</div>
