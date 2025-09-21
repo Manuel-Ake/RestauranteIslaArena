@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(to right, #eaf4ff, #f5eaff);
+  background: linear-gradient(to right, #5592d4, #f5eaff);
   padding: 60px;
   min-height: 80vh;
 }
@@ -71,10 +71,12 @@
 
 .card img {
   width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 15px;
+  height: auto; /* ← Altura automática mantiene proporciones */
+  max-height: 200px; /* Límite máximo */
+  border-radius: 10px;
+  margin-bottom: 20px;
+  transition: transform 0.3s;
+  object-fit: contain;
 }
 
 .card:hover {
