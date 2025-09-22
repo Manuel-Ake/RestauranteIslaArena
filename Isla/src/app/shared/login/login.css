@@ -4,7 +4,10 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-mar) 50%, var(--azul-claro) 100%);
+  background-image: url('/img/fondo3.jpg'); /* Tu imagen */
+  background-size: cover;          /* Cubre todo el espacio */
+  background-position: center;     /* Centra la imagen */
+  background-repeat: no-repeat;    /* No repetir */
   padding: 20px;
   font-family: 'Arial', sans-serif;
 }
