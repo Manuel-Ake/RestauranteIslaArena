@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { foodInterface } from '../../core/interface/foodInterface'; // Cambiado
+import { foodInterface } from '../../core/interface/foodInterface';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Saucer } from '../../core/models/saucer';// Cambiado
+import { FoodService } from '../../core/service/foodService'; // Importar el servicio correcto
 
 @Component({
   selector: 'app-up-food-amd',
@@ -10,26 +10,26 @@ import { Saucer } from '../../core/models/saucer';// Cambiado
   templateUrl: './up-food-amd.html',
   styleUrl: './up-food-amd.css'
 })
-
 export class UpFoodAmd {
   activeSection: String = 'upfood';
-    // Agregar estas propiedades a la clase
-  ultimosPlatillos: foodInterface[] = []; // Cambiado
-  platilloEditando: foodInterface | null = null; // Cambiado
+  ultimosPlatillos: foodInterface[] = [];
+  platilloEditando: foodInterface | null = null;
   esModoEdicion: boolean = false;
-  setSection(section: string) {
-    this.activeSection = section;
 
-  }
   nombre = '';
   descripcion = '';
   precio!: number;
   imageBase64: string = '';
 
-  constructor(private saucerService: Saucer){ // Cambiado
-    this.saucerService.platillo$.subscribe(platillos => { // Cambiado
-    this.ultimosPlatillos = platillos.slice(-5).reverse(); // Últimos 5, más reciente primero
+  // Cambiar el constructor para usar FoodService en lugar de Saucer
+  constructor(private foodService: FoodService){
+    this.foodService.saucer$.subscribe((platillos: foodInterface[]) => {
+      this.ultimosPlatillos = platillos.slice(-5).reverse();
     });
+  }
+
+  setSection(section: string) {
+    this.activeSection = section;
   }
 
   OnfileSelected(event: any){
@@ -43,16 +43,15 @@ export class UpFoodAmd {
     }
   }
 
-
-// Método para eliminar platillo
-eliminarPlatillo(platillo: foodInterface) { // Cambiado
-  if (confirm('¿Estás seguro de que deseas eliminar este platillo?')) {
-    this.saucerService.eliminarPlatillo(platillo); // Cambiado
+  // Método para eliminar platillo
+  eliminarPlatillo(platillo: foodInterface) {
+    if (confirm('¿Estás seguro de que deseas eliminar este platillo?')) {
+      this.foodService.eliminarPlatillo(platillo);
+    }
   }
-}
 
   // Método para editar platillo
-  editarPlatillo(platillo: foodInterface) { // Cambiado
+  editarPlatillo(platillo: foodInterface) {
     this.platilloEditando = {...platillo};
     this.nombre = platillo.nombre;
     this.descripcion = platillo.descripcion;
@@ -65,39 +64,47 @@ eliminarPlatillo(platillo: foodInterface) { // Cambiado
   subirsaucer() {
     if (this.esModoEdicion && this.platilloEditando) {
       // Modo edición
-      const platilloActualizado: foodInterface = { // Cambiado
+      const platilloActualizado: foodInterface = {
         nombre: this.nombre,
         descripcion: this.descripcion,
         precio: this.precio,
         imagen: this.imageBase64
       };
+
       if(platilloActualizado.nombre == '' || platilloActualizado.descripcion == '' || !platilloActualizado.precio || platilloActualizado.imagen == ''){
-        alert("Rellene todos los espacios")
-      }else{
-      this.saucerService.actualizarPlatillo(this.platilloEditando, platilloActualizado); // Cambiado
-      this.esModoEdicion = false;
-      alert("Platillo actualizado exitosamente");
+        alert("Rellene todos los espacios");
+      } else {
+        this.foodService.actualizarPlatillo(this.platilloEditando, platilloActualizado);
+        this.esModoEdicion = false;
+        alert("Platillo actualizado exitosamente");
+        this.limpiarFormulario();
       }
     } else {
-        // Modo creación
-      const newsaucer: foodInterface = { // Cambiado
+      // Modo creación
+      const newsaucer: foodInterface = {
         nombre: this.nombre,
         descripcion: this.descripcion,
         precio: this.precio,
         imagen: this.imageBase64
       };
+
       if(newsaucer.nombre == '' || newsaucer.descripcion == '' || !newsaucer.precio || newsaucer.imagen == ''){
-        alert("Rellene todos los espacios")
-      }else{
-        this.saucerService.agregarPlatillo(newsaucer); // Cambiado
+        alert("Rellene todos los espacios");
+      } else {
+        this.foodService.agregarPlatillo(newsaucer);
         alert("Platillo subido exitosamente");
-        // Limpiar formulario
-        this.nombre = '';
-        this.descripcion = '';
-        this.precio = 0;
-        this.imageBase64 = '';
-        this.platilloEditando = null;
-      } 
-    }   
+        this.limpiarFormulario();
+      }
+    }
+  }
+
+  // Método para limpiar el formulario (evita duplicación de código)
+  private limpiarFormulario() {
+    this.nombre = '';
+    this.descripcion = '';
+    this.precio = 0;
+    this.imageBase64 = '';
+    this.platilloEditando = null;
+    this.esModoEdicion = false;
   }
 }
