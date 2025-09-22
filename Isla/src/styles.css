@@ -337,9 +337,9 @@ button{
   gap: 10px;
   align-items: center;
 }
-
+/* BOTON DE SUBIR EL PRODUCTO*/
 .submit-btn {
-  background: linear-gradient(135deg, #0c3e6f 0%, #023f1c 100%);
+  background: linear-gradient(135deg, #0c3e6f 0%, #0d394f 100%);
   color: white;
   border: none;
   padding: 12px 20px;
@@ -354,7 +354,7 @@ button{
 .submit-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(39, 174, 96, 0.4);
-  background: linear-gradient(135deg, #126434 0%, #1e8449 100%);
+  background: linear-gradient(135deg, #032e61 0%, #064151 100%);
 }
 
 .cancel-btn {
