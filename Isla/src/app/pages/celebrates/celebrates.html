@@ -1,1 +1,160 @@
-<h1>Celebra con nosotros</h1>
+<div class="celebrates-container">
+  <!-- Header con imagen del restaurante -->
+  <div class="celebrates-header">
+    <img src="img/prueba.jpg" alt="Restaurante Isla Arena" class="restaurant-image">
+    <div class="header-overlay">
+      <h1>¡FESTEJA CON NOSOTROS!</h1>
+      <p>Tu día especial merece una celebración especial</p>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="celebrates-content">
+    <!-- Sección de introducción -->
+    <div class="intro-section">
+      <h2>🎂 ¡Celebra tu cumpleaños con nosotros!</h2>
+      <p>En Isla Arena queremos hacer tu día aún más especial. Regístrate y si hoy es tu cumpleaños, ¡te regalamos un delicioso coctel de camarón con bebida! <strong>Deberás presentar tu INE para verificar.</strong></p>
+    </div>
+
+    <!-- Formulario de registro -->
+    <div class="form-section" *ngIf="!formularioEnviado">
+      <div class="form-card">
+        <h3>Registra tu información</h3>
+        <form (ngSubmit)="onSubmit()" #cumpleForm="ngForm">
+          
+          <div class="form-group">
+            <label for="nombre">Nombre completo *</label>
+            <input type="text" id="nombre" name="nombre" 
+                   [(ngModel)]="nombre" required 
+                   placeholder="Como aparece en tu INE">
+          </div>
+
+          <div class="form-group">
+            <label for="fechaNacimiento">Fecha de nacimiento *</label>
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento"
+                   [(ngModel)]="fechaNacimiento" required>
+          </div>
+
+
+          <div class="form-group">
+            <label for="telefono">Teléfono *</label>
+            <input type="tel" id="telefono" name="telefono"
+                   [(ngModel)]="telefono" required
+                   placeholder="(999) 999-9999">
+          </div>
+
+          <div class="form-group">
+            <label for="fechaReserva">Fecha preferida para venir *</label>
+            <input type="date" id="fechaReserva" name="fechaReserva"
+                   [(ngModel)]="fechaReserva" required
+                   [min]="minDate">
+          </div>
+
+          <div class="form-group">
+            <label for="horaReserva">Hora preferida *</label>
+            <select id="horaReserva" name="horaReserva" [(ngModel)]="horaReserva" required>
+              <option value="">Selecciona una hora</option>
+              <option value="13:00">1:00 PM</option>
+              <option value="14:00">2:00 PM</option>
+              <option value="15:00">3:00 PM</option>
+              <option value="16:00">4:00 PM</option>
+              <option value="17:00">5:00 PM</option>
+              <option value="18:00">6:00 PM</option>
+              <option value="19:00">7:00 PM</option>
+              <option value="20:00">8:00 PM</option>
+              <option value="21:00">9:00 PM</option>
+            </select>
+          </div>
+
+          <div class="terms-checkbox">
+            <input type="checkbox" id="terms" name="terms" [(ngModel)]="aceptoTerminos" required>
+            <label for="terms">Acepto que presentaré mi INE original para verificación al reclamar mi regalo</label>
+          </div>
+
+          <button type="submit" class="btn-submit" 
+                  [disabled]="!cumpleForm.form.valid || loading">
+            {{ loading ? 'Verificando...' : '¡Reservar mi regalo!' }}
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Resultado de la verificación -->
+    <div class="result-section" *ngIf="formularioEnviado">
+      <div class="result-card" [class.success]="esSuCumpleanios" [class.error]="!esSuCumpleanios">
+        
+        <div *ngIf="esSuCumpleanios" class="success-content">
+          <div class="celebration-animation">🎉🎂🥳</div>
+          <h2>¡FELICIDADES {{ nombre }}!</h2>
+          <p>¡Hoy es tu día especial! Tu reservación ha sido confirmada.</p>
+          
+          <div class="reserva-info">
+            <div class="reserva-detail">
+              <h4>📅 Detalles de tu reservación:</h4>
+              <p><strong>Fecha:</strong> {{ fechaReserva | date:'fullDate' }}</p>
+              <p><strong>Hora:</strong> {{ horaReserva }}</p>
+              <p><strong>Personas:</strong> 2 (incluyéndote)</p>
+            </div>
+          </div>
+
+          <div class="regalo-info">
+            <img src="img/regalo.jpg" alt="Regalo de cumpleaños - Coctel de Camarón" class="regalo-image">
+            <div class="regalo-details">
+              <h4>🎁 Tu regalo de cumpleaños:</h4>
+              <ul>
+                <li>🍤 <strong>Coctel de Camarón Premium</strong></li>
+                <li>🍹 <strong>Margarita Especial de la Casa</strong></li>
+                <li>🎂 <strong>Postre sorpresa</strong></li>
+              </ul>
+              <p>Delicioso coctel de camarones con salsa especial acompañado de nuestra bebida signature</p>
+            </div>
+          </div>
+
+          <div class="verificacion-ine">
+            <h4>📋 Para reclamar tu regalo:</h4>
+            <ol>
+              <li>Preséntate en la fecha y hora reservada</li>
+              <li>🎫 Muestra esta pantalla al mesero</li>
+              <li>🆔 <strong>Presenta tu INE ORIGINAL</strong> para verificación</li>
+              <li>¡Disfruta tu regalo de cumpleaños!</li>
+            </ol>
+          </div>
+
+          <div class="codigo-reserva">
+            <p>Tu código de reservación: <strong>{{ codigoReserva }}</strong></p>
+          </div>
+
+          <div class="action-buttons">
+            <button class="btn-print" onclick="window.print()">🖨️ Imprimir comprobante</button>
+            <button class="btn-calendar" (click)="agregarACalendario()">📅 Agregar a calendario</button>
+          </div>
+        </div>
+
+        <div *ngIf="!esSuCumpleanios" class="error-content">
+          <h2>¡Gracias por registrarte, {{ nombre }}!</h2>
+          <p>Hoy no es tu cumpleaños, pero te esperamos cuando sea tu día especial para celebrar juntos.</p>
+          <p>Te contactaremos al correo <strong>{{ email }}</strong> cuando se acerque tu fecha de cumpleaños.</p>
+          
+          <button class="btn-retry" (click)="reiniciarFormulario()">
+            Intentar con otra fecha
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Información adicional -->
+    <div class="info-section">
+      <h3>📋 Términos y condiciones</h3>
+      <ul>
+        <li>✅ <strong>VERIFICACIÓN DE INE:</strong> Debes presentar identificación oficial ORIGINAL</li>
+        <li>✅ Oferta válida solo el día exacto de tu cumpleaños</li>
+        <li>✅ Debes respetar la fecha y hora de tu reservación</li>
+        <li>✅ Válido para consumo en el restaurante</li>
+        <li>✅ Máximo 2 personas por reservación</li>
+        <li>✅ No acumulable con otras promociones</li>
+        <li>✅ Máximo un regalo por persona por año</li>
+      </ul>
+    </div>
+  </div>
+</div>

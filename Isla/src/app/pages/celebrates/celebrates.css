@@ -1,0 +1,414 @@
+.celebrates-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  min-height: 100vh;
+}
+
+/* Header con imagen */
+.celebrates-header {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.restaurant-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+
+.header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(10, 61, 98, 0.8) 0%, rgba(240, 138, 93, 0.8) 100%);
+}
+
+.header-overlay h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.header-overlay p {
+  font-size: 1.3rem;
+  opacity: 0.9;
+}
+
+/* Contenido principal */
+.celebrates-content {
+  padding: 3rem 2rem;
+}
+
+.intro-section {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.intro-section h2 {
+  color: #0a3d62;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.intro-section p {
+  font-size: 1.1rem;
+  color: #2f3640;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Formulario */
+.form-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.form-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.form-card h3 {
+  color: #0a3d62;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2f3640;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #0a3d62;
+}
+
+.btn-submit {
+  width: 100%;
+  background: linear-gradient(135deg, #0a3d62 0%, #1a5f8e 100%);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.btn-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.btn-submit:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Resultados */
+.result-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.result-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.result-card.success {
+  border-left: 5px solid #28a745;
+}
+
+.result-card.error {
+  border-left: 5px solid #dc3545;
+}
+
+.celebration-animation {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-20px);}
+  60% {transform: translateY(-10px);}
+}
+
+.regalo-info {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
+  text-align: left;
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.regalo-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.regalo-details h4 {
+  color: #0a3d62;
+  margin-bottom: 1rem;
+}
+
+.regalo-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.regalo-details li {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.instructions {
+  background: #e7f3ff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.instructions h4 {
+  color: #0a3d62;
+  margin-bottom: 1rem;
+}
+
+.instructions ol {
+  padding-left: 1.5rem;
+}
+
+.instructions li {
+  margin-bottom: 0.5rem;
+}
+
+.btn-print, .btn-retry {
+  background: #f08a5d;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-print:hover, .btn-retry:hover {
+  background: #e07a4d;
+}
+
+/* Información adicional */
+.info-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.info-section h3 {
+  color: #0a3d62;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.info-section ul {
+  list-style: none;
+  padding: 0;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.info-section li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.info-section li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-overlay h1 {
+    font-size: 2.5rem;
+  }
+  
+  .celebrates-content {
+    padding: 2rem 1rem;
+  }
+  
+  .regalo-info {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .form-card, .result-card {
+    padding: 1.5rem;
+  }
+  /* Estilos para la verificación de INE */
+.verificacion-ine {
+  background: #fff3cd;
+  border: 2px solid #ffeaa7;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.verificacion-ine h4 {
+  color: #856404;
+  margin-bottom: 1rem;
+}
+
+.verificacion-ine ol {
+  padding-left: 1.5rem;
+}
+
+.verificacion-ine li {
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+.verificacion-ine li strong {
+  color: #d9534f;
+}
+
+/* Estilos para el código de reservación */
+.codigo-reserva {
+  background: linear-gradient(135deg, #0a3d62 0%, #1a5f8e 100%);
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+/* Checkbox de términos */
+.terms-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.terms-checkbox input[type="checkbox"] {
+  margin-top: 3px;
+}
+
+.terms-checkbox label {
+  font-size: 0.9rem;
+  color: #2f3640;
+  line-height: 1.4;
+}
+
+/* Información de reserva */
+.reserva-info {
+  background: #e7f3ff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+.reserva-detail p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+/* Botones de acción */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn-calendar {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-calendar:hover {
+  background: #218838;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;
+  }
+  
+  .btn-print, .btn-calendar, .btn-retry {
+    width: 100%;
+  }
+  
+  .terms-checkbox {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+}
