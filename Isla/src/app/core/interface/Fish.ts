@@ -1,6 +1,6 @@
 // app/interfaces/fish.interface.ts
 export interface Fish {
-  Id?: number;
+  id: number; // Cambiar a obligatorio y minúscula
   nombre: string;
   descripcion: string;
   precio: number;
