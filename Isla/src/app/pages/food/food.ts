@@ -1,8 +1,8 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Saucer } from '../../core/models/saucer';
-import { foodInterface } from '../../core/interface/foodInterface';
+import { foodInterface } from '../../core/interface/foodInterface';// Cambiado
+import { Saucer } from '../../core/models/saucer';// Cambiado
 // Ajusta esta ruta según donde esté realmente cart.service.ts
 import { CartService, CartItem } from '../../core/interface/cart.services';
 
@@ -13,21 +13,21 @@ import { CartService, CartItem } from '../../core/interface/cart.services';
   styleUrl: './food.css'
 })
 export class Food implements OnInit {
-  saucer: Saucer[] = [];
+  saucer: foodInterface[] = []; // Cambiado
   
   constructor(
-    private foodinterface: foodInterface,
+    private saucerService: Saucer, // Cambiado
     private cartService: CartService
   ) {}
 
   ngOnInit(): void {
-    this.foodinterface.saucer$.subscribe(data => {
+    this.saucerService.platillo$.subscribe(data => { // Cambiado
       console.log("Platillos recibidos en Alimentos: ", data);
       this.saucer = data;
     });
   }
 
-  agregarAlCarrito(platillo: Saucer) {
+  agregarAlCarrito(platillo: foodInterface) { // Cambiado
     
     const cartItem: CartItem = {
       id: Date.now(), // ID generado automáticamente

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Saucer } from '../../core/models/saucer';
+import { foodInterface } from '../../core/interface/foodInterface'; // Cambiado
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { foodInterface } from '../../core/interface/foodInterface';
+import { Saucer } from '../../core/models/saucer';// Cambiado
 
 @Component({
   selector: 'app-up-food-amd',
@@ -14,8 +14,8 @@ import { foodInterface } from '../../core/interface/foodInterface';
 export class UpFoodAmd {
   activeSection: String = 'upfood';
     // Agregar estas propiedades a la clase
-  ultimosPlatillos: Saucer[] = [];
-  platilloEditando: Saucer | null = null;
+  ultimosPlatillos: foodInterface[] = []; // Cambiado
+  platilloEditando: foodInterface | null = null; // Cambiado
   esModoEdicion: boolean = false;
   setSection(section: string) {
     this.activeSection = section;
@@ -26,8 +26,8 @@ export class UpFoodAmd {
   precio!: number;
   imageBase64: string = '';
 
-  constructor(private foodinterface: foodInterface){
-    this.foodinterface.saucer$.subscribe(platillos => {
+  constructor(private saucerService: Saucer){ // Cambiado
+    this.saucerService.platillo$.subscribe(platillos => { // Cambiado
     this.ultimosPlatillos = platillos.slice(-5).reverse(); // Últimos 5, más reciente primero
     });
   }
@@ -45,14 +45,14 @@ export class UpFoodAmd {
 
 
 // Método para eliminar platillo
-eliminarPlatillo(platillo: Saucer) {
+eliminarPlatillo(platillo: foodInterface) { // Cambiado
   if (confirm('¿Estás seguro de que deseas eliminar este platillo?')) {
-    this.foodinterface.eliminarPlatillo(platillo);
+    this.saucerService.eliminarPlatillo(platillo); // Cambiado
   }
 }
 
   // Método para editar platillo
-  editarPlatillo(platillo: Saucer) {
+  editarPlatillo(platillo: foodInterface) { // Cambiado
     this.platilloEditando = {...platillo};
     this.nombre = platillo.nombre;
     this.descripcion = platillo.descripcion;
@@ -65,7 +65,7 @@ eliminarPlatillo(platillo: Saucer) {
   subirsaucer() {
     if (this.esModoEdicion && this.platilloEditando) {
       // Modo edición
-      const platilloActualizado: Saucer = {
+      const platilloActualizado: foodInterface = { // Cambiado
         nombre: this.nombre,
         descripcion: this.descripcion,
         precio: this.precio,
@@ -74,13 +74,13 @@ eliminarPlatillo(platillo: Saucer) {
       if(platilloActualizado.nombre == '' || platilloActualizado.descripcion == '' || !platilloActualizado.precio || platilloActualizado.imagen == ''){
         alert("Rellene todos los espacios")
       }else{
-      this.foodinterface.actualizarPlatillo(this.platilloEditando, platilloActualizado);
+      this.saucerService.actualizarPlatillo(this.platilloEditando, platilloActualizado); // Cambiado
       this.esModoEdicion = false;
       alert("Platillo actualizado exitosamente");
       }
     } else {
         // Modo creación
-      const newsaucer: Saucer = {
+      const newsaucer: foodInterface = { // Cambiado
         nombre: this.nombre,
         descripcion: this.descripcion,
         precio: this.precio,
@@ -89,7 +89,7 @@ eliminarPlatillo(platillo: Saucer) {
       if(newsaucer.nombre == '' || newsaucer.descripcion == '' || !newsaucer.precio || newsaucer.imagen == ''){
         alert("Rellene todos los espacios")
       }else{
-        this.foodinterface.agregarPlatillo(newsaucer);
+        this.saucerService.agregarPlatillo(newsaucer); // Cambiado
         alert("Platillo subido exitosamente");
         // Limpiar formulario
         this.nombre = '';
