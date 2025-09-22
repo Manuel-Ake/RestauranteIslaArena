@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { drinkService } from '../../core/service/DrinkService';
+import { DrinkService } from '../../core/service/DrinkService';
 import { Drinkinterface } from '../../core/interface/drink';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -25,7 +25,7 @@ export class UpDrinkAmd {
      precio!: number;
      imageBase64: string = '';
 
-     constructor(private foodservice: drinkService){
+     constructor(private foodservice: DrinkService){
        this.foodservice.saucer$.subscribe(platillos => {
        this.ultimosPlatillos = platillos.slice(-5).reverse(); // Últimos 5, más reciente primero
        });

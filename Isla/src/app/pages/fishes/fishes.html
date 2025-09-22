@@ -1,6 +1,6 @@
-<h1 class="titulo">SOY ALIMENTOS</h1>
-<h4 class="subtitulo">RIKOS GUISOS</h4>
-<h1 class="titulo">ALIMENTOS</h1>
+<h1 class="titulo">ESPECIALES DEL MAR</h1>
+<h4 class="subtitulo">¡MARISCOS ULTRAFRESCOS - PREPÁRALOS A TU GUSTO!</h4>
+<h1 class="titulo">MARISCOS PREMIUM</h1>
 
 <div class="menu-container">
   <div *ngFor="let platillo of saucer" class="platillo-card">
@@ -8,9 +8,10 @@
     <div class="platillo-info">
       <h3>{{ platillo.nombre }}</h3>
       <p>{{ platillo.descripcion }}</p>
+      <p class="texto-persuasivo">✨ Capturados hoy mismo - ¡Máxima frescura garantizada!</p>
       <strong class="precio">{{ platillo.precio | currency }}</strong>
       <button class="btn-agregar" (click)="agregarAlCarrito(platillo)">
-        Agregar al carrito
+        ¡SÍ, QUIERO COCINARLOS COMO ME GUSTAN!
       </button>
     </div>
   </div>

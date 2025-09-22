@@ -1,47 +1,28 @@
-
 import { Injectable } from '@angular/core';
-import { Fish } from '../interface/Fish';
 import { BehaviorSubject } from 'rxjs';
+import { Fish } from '../interface/Fish';
+
 @Injectable({
   providedIn: 'root'
 })
 export class FishesService {
-  private saucer = new BehaviorSubject<Fish[]>([]);
-    saucer$ = this.saucer.asObservable();
+  private saucerSource = new BehaviorSubject<Fish[]>([]);
+  saucer$ = this.saucerSource.asObservable();
 
-    constructor() {
-      const guardados = localStorage.getItem('platillos');
-      if (guardados) {
-        this.saucer.next(JSON.parse(guardados));
-      }
-    }
+  agregarPlatillo(platillo: Fish) {
+    const actuales = this.saucerSource.value;
+    this.saucerSource.next([...actuales, platillo]);
+  }
 
-    agregarPlatillo(saucer: Fish) {
-      const actual = this.saucer.getValue();
-      const nuevos = [...actual, saucer];
-      this.saucer.next(nuevos);
-      localStorage.setItem('platillos', JSON.stringify(nuevos));
-    }
-      // Agregar estos métodos a la clase foodService
-    eliminarPlatillo(saucer: Fish) {
-      const actual = this.saucer.getValue();
-      const nuevos = actual.filter(p =>
-        p.nombre !== saucer.nombre ||
-        p.descripcion !== saucer.descripcion ||
-        p.precio !== saucer.precio
-      );
-      this.saucer.next(nuevos);
-      localStorage.setItem('platillos', JSON.stringify(nuevos));
-    }
+  eliminarPlatillo(platillo: Fish) {
+    const filtrados = this.saucerSource.value.filter(p => p !== platillo);
+    this.saucerSource.next(filtrados);
+  }
 
-    actualizarPlatillo(original: Fish, actualizado: Fish) {
-      const actual = this.saucer.getValue();
-      const nuevos = actual.map(p =>
-        (p.nombre === original.nombre &&
-        p.descripcion === original.descripcion &&
-        p.precio === original.precio) ? actualizado : p
-      );
-      this.saucer.next(nuevos);
-      localStorage.setItem('platillos', JSON.stringify(nuevos));
-    }
+  actualizarPlatillo(platilloViejo: Fish, platilloNuevo: Fish) {
+    const actualizados = this.saucerSource.value.map(p =>
+      p === platilloViejo ? platilloNuevo : p
+    );
+    this.saucerSource.next(actualizados);
+  }
 }

@@ -1,6 +1,6 @@
-<h1 class="titulo">SOY ALIMENTOS</h1>
-<h4 class="subtitulo">RIKOS GUISOS</h4>
-<h1 class="titulo">ALIMENTOS</h1>
+<h1 class="titulo">PROMOCIONES ESPECIALES</h1>
+<h4 class="subtitulo">¡OFERTAS QUE NO PODRÁS RESISTIR!</h4>
+<h1 class="titulo">DESCUENTOS EXCLUSIVOS</h1>
 
 <div class="menu-container">
   <div *ngFor="let platillo of saucer" class="platillo-card">
@@ -8,9 +8,10 @@
     <div class="platillo-info">
       <h3>{{ platillo.nombre }}</h3>
       <p>{{ platillo.descripcion }}</p>
+      <p class="texto-oferta">🔥 OFERTA LIMITADA - ¡APROVECHA AHORA!</p>
       <strong class="precio">{{ platillo.precio | currency }}</strong>
       <button class="btn-agregar" (click)="agregarAlCarrito(platillo)">
-        Agregar al carrito
+        ¡QUIERO ESTA OFERTA!
       </button>
     </div>
   </div>
