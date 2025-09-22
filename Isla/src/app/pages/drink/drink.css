@@ -1,89 +1,122 @@
-/* Hero principal */
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: linear-gradient(to right, #5592d4, #f5eaff);
-  padding: 60px;
-  min-height: 80vh;
-}
-
-.hero-content {
-  max-width: 50%;
-}
-
-.hero-content h1 {
-  font-size: 3rem;
-  color: #1a1a1a;
-}
-
-.hero-content p {
-  font-size: 1.2rem;
-  margin: 20px 0;
-  color: #555;
-}
-
-.hero-content button {
-  padding: 12px 24px;
-  font-size: 1rem;
-  background: #27ae60;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.hero-content button:hover {
-  background: #219150;
-}
-
-/* Imagen hero */
-.hero-image img {
-  max-width: 400px;
-  border-radius: 15px;
-}
-
-/* Sección catálogo */
-.catalogo {
+/* Títulos */
+.titulo {
+  font-size: 1.8rem;
+  font-weight: 700;
   text-align: center;
-  padding: 60px 20px;
-  background: #f9f9f9;
+  margin: 1rem 0;
+  color: #2c3e50;
 }
 
-.catalogo h2 {
-  font-size: 2rem;
-  margin-bottom: 40px;
+.subtitulo {
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #7f8c8d;
+  letter-spacing: 1.5px;
 }
 
-.catalogo-grid {
+/* Contenedor de platillos */
+.menu-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 0.8rem;
+  max-width: 1100px; /* Evita que se vea muy extendido en pantallas grandes */
+  margin: 0 auto;
 }
 
-.card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  padding: 20px;
-  transition: transform 0.2s;
+/* Tarjeta */
+.platillo-card {
+  background: #ffffff;
+  border-radius: 0.9rem;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
 }
 
-.card img {
+.platillo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Imagen */
+.platillo-card img {
   width: 100%;
-  height: auto; /* ← Altura automática mantiene proporciones */
-  max-height: 200px; /* Límite máximo */
-  border-radius: 10px;
-  margin-bottom: 20px;
-  transition: transform 0.3s;
-  object-fit: contain;
+  height: 150px;
+  object-fit: cover;
 }
 
-.card:hover {
-  transform: translateY(-8px);
+/* Información */
+.platillo-info {
+  padding: 0.8rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.card h3 {
-  margin: 10px 0;
-  font-size: 1.3rem;
+.platillo-info h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+  color: #34495e;
+}
+
+.platillo-info p {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+  margin-bottom: 0.5rem;
+}
+
+.precio {
+  font-size: 1rem;
+  color: #27ae60;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+  display: inline-block;
+}
+
+/* Botón */
+.btn-agregar {
+  background-color: #3498db;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.btn-agregar:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.btn-agregar:active {
+  transform: scale(0.97);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .titulo {
+    font-size: 1.5rem;
+  }
+  .subtitulo {
+    font-size: 0.9rem;
+  }
+  .platillo-card img {
+    height: 130px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-container {
+    grid-template-columns: 1fr;
+  }
+  .platillo-card img {
+    height: 120px;
+  }
 }

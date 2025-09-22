@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component} from '@angular/core';
 import { drinkService } from '../../core/service/DrinkService';
 import { Drinkinterface } from '../../core/interface/drink';
 import { CartService, CartItem } from '../../core/interface/cart.services';

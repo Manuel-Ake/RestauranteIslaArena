@@ -1,63 +1,122 @@
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-h2 {
+/* Títulos */
+.titulo {
+  font-size: 1.8rem;
+  font-weight: 700;
   text-align: center;
-  color: #333;
-  margin-bottom: 30px;
+  margin: 1rem 0;
+  color: #2c3e50;
 }
 
-.no-fishes {
+.subtitulo {
+  font-size: 1rem;
   text-align: center;
-  padding: 40px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  color: #666;
+  margin-bottom: 1.5rem;
+  color: #7f8c8d;
+  letter-spacing: 1.5px;
 }
 
-.fishes-grid {
+/* Contenedor de platillos */
+.menu-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 0.8rem;
+  max-width: 1100px; /* Evita que se vea muy extendido en pantallas grandes */
+  margin: 0 auto;
 }
 
-.fish-card {
-  background: white;
-  border-radius: 8px;
+/* Tarjeta */
+.platillo-card {
+  background: #ffffff;
+  border-radius: 0.9rem;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
 }
 
-.fish-card:hover {
-  transform: translateY(-5px);
+.platillo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
-.fish-image {
+/* Imagen */
+.platillo-card img {
   width: 100%;
-  height: 200px;
+  height: 150px;
   object-fit: cover;
 }
 
-.fish-info {
-  padding: 15px;
+/* Información */
+.platillo-info {
+  padding: 0.8rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.fish-info h3 {
-  margin: 0 0 10px;
-  color: #333;
+.platillo-info h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+  color: #34495e;
 }
 
-.fish-info p {
-  margin: 0 0 10px;
-  color: #666;
+.platillo-info p {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+  margin-bottom: 0.5rem;
 }
 
-.price {
+.precio {
+  font-size: 1rem;
+  color: #27ae60;
   font-weight: bold;
-  color: #2c5530 !important;
-  font-size: 1.2em;
+  margin-bottom: 0.8rem;
+  display: inline-block;
+}
+
+/* Botón */
+.btn-agregar {
+  background-color: #3498db;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.btn-agregar:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.btn-agregar:active {
+  transform: scale(0.97);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .titulo {
+    font-size: 1.5rem;
+  }
+  .subtitulo {
+    font-size: 0.9rem;
+  }
+  .platillo-card img {
+    height: 130px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-container {
+    grid-template-columns: 1fr;
+  }
+  .platillo-card img {
+    height: 120px;
+  }
 }
