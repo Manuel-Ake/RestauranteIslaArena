@@ -1,210 +1,107 @@
+/* Estilos generales del contenedor */
 .Subir_p {
   background: white;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  max-width: 1000px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-width: 1200px;
   margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.Subir_p h2 {
+.Subtitulo {
   text-align: center;
-  margin-bottom: 25px;
-  color: #005792;
-  font-size: 24px;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  font-size: 28px;
   font-weight: 700;
   border-bottom: 2px solid #f0f8ff;
   padding-bottom: 15px;
+  position: relative;
 }
 
-.form-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 25px;
-  align-items: flex-start;
+.Subtitulo::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #3498db, #f39c12);
+  border-radius: 3px;
 }
 
-.file-upload-container {
-  flex: 1;
-  min-width: 200px;
+/* Estado vacío */
+.empty-state {
   text-align: center;
+  padding: 40px 20px;
+  color: #7f8c8d;
 }
 
-.file-upload-label {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 15px;
-  background: #f0f8ff;
-  border: 2px dashed #4facfe;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s;
-  min-height: 100px;
-  justify-content: center;
-  width: 100%;
+.empty-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
 }
 
-.file-upload-label:hover {
-  background: #e6f7ff;
-  border-color: #005792;
-}
-
-.upload-icon {
-  font-size: 24px;
-  margin-bottom: 8px;
-}
-
-.upload-text {
-  font-weight: 500;
-  color: #005792;
-  font-size: 14px;
-}
-
-.file-input {
-  display: none;
-}
-
-.file-info {
-  margin-top: 10px;
-  color: #6c757d;
-  font-size: 12px;
-  text-align: center;
-}
-
-.form-group {
-  flex: 1;
-  min-width: 180px;
-}
-
-.form-input {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 14px;
-  transition: border-color 0.3s;
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: #4facfe;
-  box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.2);
-}
-
-.submit-btn {
-  display: block;
-  width: 100%;
-  max-width: 300px;
-  margin: 0 auto;
-  padding: 14px;
-  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
+.empty-state h3 {
+  margin-bottom: 10px;
+  color: #95a5a6;
   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .form-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-input {
+    min-width: auto;
+  }
+
+  .action-buttons {
+    justify-content: center;
+  }
+}
+
 @media (max-width: 768px) {
-  .form-row {
+  .Subir_p {
+    padding: 20px;
+  }
+
+  .tabla-platillos table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .acciones-cell {
     flex-direction: column;
   }
-  
-  .file-upload-label {
-    min-height: 80px;
+
+  .thumb:hover {
+    transform: scale(1.3);
   }
 }
 
-/* Agregar estos estilos al final */
-.ultimos-platillos {
-  margin-top: 30px;
-  border-top: 1px solid #e2e8f0;
-  padding-top: 20px;
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.ultimos-platillos h3 {
-  color: #005792;
-  margin-bottom: 15px;
-  font-size: 18px;
+.tabla-platillos tr {
+  animation: fadeIn 0.4s ease-out;
 }
 
-.platillo-item {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  background: #f9f9f9;
-}
-
-.platillo-item .thumb {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 6px;
-  margin-right: 15px;
-}
-
-.platillo-info {
-  flex-grow: 1;
-}
-
-.platillo-info h4 {
-  margin: 0 0 5px 0;
-  color: #2c3e50;
-  font-size: 16px;
-}
-
-.platillo-info p {
-  margin: 0 0 5px 0;
-  color: #7f8c8d;
-  font-size: 14px;
-}
-
-.precio {
-  color: #e67e22;
-  font-weight: 600;
-}
-
-.acciones {
-  display: flex;
-  gap: 10px;
-}
-
-.btn-editar, .btn-eliminar {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.3s;
-}
-
-.btn-editar {
-  background: #ffc107;
-  color: #000;
-}
-
-.btn-editar:hover {
-  background: #e0a800;
-}
-
-.btn-eliminar {
-  background: #dc3545;
-  color: white;
-}
-
-.btn-eliminar:hover {
-  background: #c82333;
+/* Efectos de focus mejorados */
+.form-input:focus,
+.file-upload-label:focus,
+.submit-btn:focus,
+.cancel-btn:focus,
+.btn-editar:focus,
+.btn-eliminar:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
 }
