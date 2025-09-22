@@ -1,7 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 import { PromoInterface } from '../../core/interface/PromoInterface';
-import { PeomoService } from '../../core/service/PromoService';
+import { PromoService } from '../../core/service/PromoService';
 import { CommonModule} from '@angular/common';
 @Component({
   selector: 'app-up-promotion-amd',
@@ -24,7 +24,7 @@ export class UpPromotionAmd {
      precio!: number;
      imageBase64: string = '';
 
-     constructor(private foodservice: PeomoService){
+     constructor(private foodservice: PromoService){
        this.foodservice.saucer$.subscribe(platillos => {
        this.ultimosPlatillos = platillos.slice(-5).reverse(); // Últimos 5, más reciente primero
        });

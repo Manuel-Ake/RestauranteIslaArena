@@ -1,6 +1,6 @@
-<h1 class="titulo">SOY ALIMENTOS</h1>
-<h4 class="subtitulo">RIKOS GUISOS</h4>
-<h1 class="titulo">ALIMENTOS</h1>
+<h1 class="titulo">BEBIDAS REFRESCANTES</h1>
+<h4 class="subtitulo">¡DESCUBRE EL SABOR QUE TE HARA VIBRAR!</h4>
+<h1 class="titulo">BEBIDAS</h1>
 
 <div class="menu-container">
   <div *ngFor="let platillo of saucer" class="platillo-card">
@@ -10,7 +10,7 @@
       <p>{{ platillo.descripcion }}</p>
       <strong class="precio">{{ platillo.precio | currency }}</strong>
       <button class="btn-agregar" (click)="agregarAlCarrito(platillo)">
-        Agregar al carrito
+        ¡QUIERO ESTA BEBIDA!
       </button>
     </div>
   </div>
