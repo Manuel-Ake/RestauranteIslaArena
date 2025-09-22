@@ -89,31 +89,3 @@
   object-fit: cover;
 }
 
-.btn-editar {
-  background: #f39c12;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  margin-right: 5px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn-editar:hover {
-  background: #e67e22;
-}
-
-.btn-eliminar {
-  background: #e74c3c;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn-eliminar:hover {
-  background: #c0392b;
-}

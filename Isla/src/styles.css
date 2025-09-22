@@ -167,6 +167,35 @@ button{
   display: inline-block;
 }
 
+/*=========PARA EL GESTOR==========*/
+.btn-editar {
+  background: #0b477a;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-right: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-editar:hover {
+  background: #133743;
+}
+
+.btn-eliminar {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-eliminar:hover {
+  background:#c0392b;
+}
 
 /* ===== RESPONSIVO ===== */
 @media (max-width: 992px) {
