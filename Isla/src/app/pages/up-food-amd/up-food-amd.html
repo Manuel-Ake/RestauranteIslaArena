@@ -1,21 +1,26 @@
 <div class="Subir_p">
-  <h2 class="Subtitulo">SUBIR PLATILLOS</h2>
+  <h2 class="Subtitulo">{{ esModoEdicion ? 'EDITAR PLATILLO' : 'SUBIR PLATILLOS' }}</h2>
 
   <!-- Barra de inputs -->
   <div class="form-bar">
     <input type="text" [(ngModel)]="nombre" placeholder="Nombre del platillo" class="form-input">
     <input type="text" [(ngModel)]="descripcion" placeholder="Descripción del platillo" class="form-input">
-    <input type="number" [(ngModel)]="precio" placeholder="Precio del platillo" class="form-input">
+    <input type="number" [(ngModel)]="precio" placeholder="Precio del platillo" class="form-input" min="0">
 
     <label for="fileInput" class="file-upload-label">
       <span class="upload-icon">📁</span>
-      <span class="upload-text">Imagen</span>
+      <span class="upload-text">{{ imageBase64 ? 'Imagen Seleccionada' : 'Seleccionar Imagen' }}</span>
     </label>
-    <input id="fileInput" type="file" (change)="OnfileSelected($event)" class="file-input">
+    <input id="fileInput" type="file" (change)="OnfileSelected($event)" class="file-input" accept="image/*">
 
-    <button (click)="subirsaucer()" class="submit-btn">
-      {{ esModoEdicion ? 'Actualizar Platillo' : 'Subir Platillo' }}
-    </button>
+    <div class="action-buttons">
+      <button (click)="subirsaucer()" class="submit-btn">
+        {{ esModoEdicion ? 'Actualizar Platillo' : 'Subir Platillo' }}
+      </button>
+      <button *ngIf="esModoEdicion" (click)="cancelarEdicion()" class="cancel-btn">
+        Cancelar
+      </button>
+    </div>
   </div>
 
   <!-- Tabla de platillos -->
@@ -33,18 +38,25 @@
       </thead>
       <tbody>
         <tr *ngFor="let platillo of ultimosPlatillos">
-          <td>{{ platillo.nombre }}</td>
-          <td>{{ platillo.descripcion }}</td>
-          <td>{{ platillo.precio | currency }}</td>
-          <td>
+          <td class="nombre-cell">{{ platillo.nombre }}</td>
+          <td class="descripcion-cell">{{ platillo.descripcion }}</td>
+          <td class="precio-cell">{{ platillo.precio | currency }}</td>
+          <td class="imagen-cell">
             <img [src]="platillo.imagen" alt="{{platillo.nombre}}" class="thumb">
           </td>
-          <td>
+          <td class="acciones-cell">
             <button (click)="editarPlatillo(platillo)" class="btn-editar">✏ Editar</button>
             <button (click)="eliminarPlatillo(platillo)" class="btn-eliminar">🗑 Eliminar</button>
           </td>
         </tr>
       </tbody>
     </table>
-  </div>
+  </div>
+
+  <!-- Mensaje cuando no hay platillos -->
+  <div *ngIf="ultimosPlatillos.length === 0" class="empty-state">
+    <div class="empty-icon">🍽️</div>
+    <h3>No hay platillos aún</h3>
+    <p>Comienza agregando tu primer platillo usando el formulario superior.</p>
+  </div>
 </div>

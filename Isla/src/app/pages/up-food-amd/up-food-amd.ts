@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { foodInterface } from '../../core/interface/foodInterface';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,7 +10,7 @@ import { FoodService } from '../../core/service/foodService';
   templateUrl: './up-food-amd.html',
   styleUrl: './up-food-amd.css'
 })
-export class UpFoodAmd {
+export class UpFoodAmd implements OnInit {
   activeSection: String = 'upfood';
   ultimosPlatillos: foodInterface[] = [];
   platilloEditando: foodInterface | null = null;
@@ -18,10 +18,12 @@ export class UpFoodAmd {
 
   nombre = '';
   descripcion = '';
-  precio!: number;
+  precio: number = 0;
   imageBase64: string = '';
 
-  constructor(private foodService: FoodService){
+  constructor(private foodService: FoodService){}
+
+  ngOnInit() {
     this.foodService.saucer$.subscribe((platillos: foodInterface[]) => {
       this.ultimosPlatillos = platillos.slice(-5).reverse();
     });
@@ -49,49 +51,67 @@ export class UpFoodAmd {
   }
 
   editarPlatillo(platillo: foodInterface) {
-    this.platilloEditando = platillo; // No usar spread, mantener referencia original
+    this.platilloEditando = platillo;
     this.nombre = platillo.nombre;
     this.descripcion = platillo.descripcion;
     this.precio = platillo.precio;
     this.imageBase64 = platillo.imagen;
     this.esModoEdicion = true;
+    
+    // Scroll al formulario para mejor UX
+    setTimeout(() => {
+      const formElement = document.querySelector('.Subir_p');
+      if (formElement) {
+        formElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   }
 
   subirsaucer() {
+    // Validaciones
+    if (!this.nombre || !this.descripcion || !this.precio || !this.imageBase64) {
+      alert("Por favor, rellene todos los espacios");
+      return;
+    }
+
+    if (this.precio <= 0) {
+      alert("El precio debe ser mayor a 0");
+      return;
+    }
+
     if (this.esModoEdicion && this.platilloEditando) {
       // Modo edición
       const platilloActualizado: foodInterface = {
-        id: this.platilloEditando.id, // Mantener el ID original
+        id: this.platilloEditando.id,
         nombre: this.nombre,
         descripcion: this.descripcion,
         precio: this.precio,
         imagen: this.imageBase64
       };
 
-      if(platilloActualizado.nombre == '' || platilloActualizado.descripcion == '' || !platilloActualizado.precio || platilloActualizado.imagen == ''){
-        alert("Rellene todos los espacios");
-      } else {
-        this.foodService.actualizarPlatillo(this.platilloEditando, platilloActualizado);
-        this.esModoEdicion = false;
-        alert("Platillo actualizado exitosamente");
-        this.limpiarFormulario();
-      }
+      this.foodService.actualizarPlatillo(this.platilloEditando, platilloActualizado);
+      this.esModoEdicion = false;
+      alert("Platillo actualizado exitosamente");
+      this.limpiarFormulario();
     } else {
       // Modo creación
-      const newsaucer: foodInterface = {
+      const nuevoPlatillo: foodInterface = {
+        id: 0, // El servicio asignará el ID correcto
         nombre: this.nombre,
         descripcion: this.descripcion,
         precio: this.precio,
         imagen: this.imageBase64
       };
 
-      if(newsaucer.nombre == '' || newsaucer.descripcion == '' || !newsaucer.precio || newsaucer.imagen == ''){
-        alert("Rellene todos los espacios");
-      } else {
-        this.foodService.agregarPlatillo(newsaucer);
-        alert("Platillo subido exitosamente");
-        this.limpiarFormulario();
-      }
+      this.foodService.agregarPlatillo(nuevoPlatillo);
+      alert("Platillo subido exitosamente");
+      this.limpiarFormulario();
+    }
+  }
+
+  cancelarEdicion() {
+    if (confirm('¿Cancelar edición? Los cambios no guardados se perderán.')) {
+      this.limpiarFormulario();
     }
   }
 
@@ -102,5 +122,11 @@ export class UpFoodAmd {
     this.imageBase64 = '';
     this.platilloEditando = null;
     this.esModoEdicion = false;
+    
+    // Limpiar input file
+    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = '';
+    }
   }
 }
