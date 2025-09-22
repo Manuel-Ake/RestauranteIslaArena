@@ -13,21 +13,21 @@ import { CartService, CartItem } from '../../core/interface/cart.services';
   styleUrl: './food.css'
 })
 export class Food implements OnInit {
-  saucer: Saucer[] = [];
+  foodinterface: foodInterface[] = [];
   
   constructor(
-    private foodinterface: foodInterface,
+    private saucer:Saucer,
     private cartService: CartService
   ) {}
 
   ngOnInit(): void {
-    this.foodinterface.saucer$.subscribe(data => {
+    this.saucer.food$.subscribe(data => {
       console.log("Platillos recibidos en Alimentos: ", data);
-      this.saucer = data;
+      this.foodinterface = data;
     });
   }
 
-  agregarAlCarrito(platillo: Saucer) {
+  agregarAlCarrito(platillo: foodInterface) {
     
     const cartItem: CartItem = {
       id: Date.now(), // ID generado automáticamente

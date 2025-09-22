@@ -6,16 +6,15 @@
   </div>
 
   <div class="menu-container">
-    <div *ngFor="let platillo of saucer" class="platillo-card">
+    <div *ngFor="let platillo of foodinterface" class="platillo-card">
       <div class="card-image">
         <img [src]="platillo.imagen" alt="{{platillo.nombre}}" class="platillo-img">
-        <div class="card-badge">Nuevo</div>
       </div>
       
       <div class="platillo-info">
         <div class="info-header">
           <h3 class="platillo-name">{{ platillo.nombre }}</h3>
-          <span class="precio-tag">{{ platillo.precio | currency }}</span>
+          <span class="precio">{{ platillo.precio | currency }}</span>
         </div>
         
         <p class="platillo-desc">{{ platillo.descripcion }}</p>

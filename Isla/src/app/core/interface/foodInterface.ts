@@ -1,3 +1,11 @@
+export interface foodInterface {
+  id?: number;
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  imagen: string; // guardaremos la URL base64 de la imagen
+}
+/*
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Saucer } from '../models/saucer';
@@ -44,4 +52,4 @@ export class foodInterface {
     this.saucer.next(nuevos);
     localStorage.setItem('platillos', JSON.stringify(nuevos));
   }
-}
+}*/
