@@ -1,0 +1,18 @@
+<div class="container">
+  <h2>Lista de Fishes</h2>
+
+  <div *ngIf="fishes.length === 0" class="no-fishes">
+    <p>No hay fishes disponibles. Agrega algunos en la sección de administración.</p>
+  </div>
+
+  <div class="fishes-grid" *ngIf="fishes.length > 0">
+    <div class="fish-card" *ngFor="let fish of fishes">
+      <img [src]="fish.imagen" alt="{{ fish.nombre }}" class="fish-image">
+      <div class="fish-info">
+        <h3>{{ fish.nombre }}</h3>
+        <p>{{ fish.descripcion }}</p>
+        <p class="price">${{ fish.precio }}</p>
+      </div>
+    </div>
+  </div>
+</div>

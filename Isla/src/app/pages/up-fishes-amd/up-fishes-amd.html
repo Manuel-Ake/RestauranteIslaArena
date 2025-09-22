@@ -1,28 +1,49 @@
-<div class="Subir_p">
-  <h2>SUBIR PLATILLOS</h2>
+<div class="container">
+  <h2 class="title">Subir Fish</h2>
 
+  <!-- Formulario -->
   <div class="form-row">
-      <div class="form-group">
-      <input type="text" [(ngModel)]="nombre" placeholder="Nombre del platillo" class="form-input">
-    </div>
+    <input type="text" [(ngModel)]="nombre" placeholder="Nombre del fish" class="form-input" />
+    <input type="text" [(ngModel)]="descripcion" placeholder="Descripción del fish" class="form-input" />
+    <input type="number" [(ngModel)]="precio" placeholder="Precio" class="form-input" />
 
-    <div class="form-group">
-      <input type="text" [(ngModel)]="descripcion" placeholder="Descripción del platillo" class="form-input">
-    </div>
-
-    <div class="form-group">
-      <input type="number" [(ngModel)]="precio" placeholder="Precio del platillo" class="form-input">
+    <div class="file-upload-container">
+      <label for="fileInput" class="file-upload-label">
+        <span class="upload-icon">📁</span>
+        <span class="upload-text">Seleccionar imagen</span>
+      </label>
+      <input id="fileInput" type="file" (change)="OnfileSelected($event)" class="file-input" />
+      <p class="file-info">{{ imageBase64 ? 'Archivo seleccionado' : 'Sin archivo' }}</p>
     </div>
   </div>
 
-  <div class="file-upload-container">
-      <label for="fileInput" class="file-upload-label">
-        <span class="upload-icon">📁</span>
-        <span class="upload-text">Seleccionar archivo</span>
-      </label>
-      <input id="fileInput" type="file" (change)="OnfileSelected($event)" class="file-input">
-      <p class="file-info">{{ imageBase64 ? 'Archivo seleccionado' : 'Sin archivos seleccionados' }}</p>
-    </div>
+  <button (click)="subirFish()" class="submit-btn">
+    {{ editIndex !== null ? 'Actualizar Fish' : 'Subir Fish' }}
+  </button>
 
-  <button (click)="subirsaucer()" class="submit-btn">Subir Platillo</button>
+  <!-- CRUD: Lista de fishes -->
+  <h3 class="subtitle">Lista de Fishes</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Imagen</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fish of fishes; let i = index">
+        <td>{{ fish.nombre }}</td>
+        <td>{{ fish.descripcion }}</td>
+        <td>${{ fish.precio }}</td>
+        <td><img [src]="fish.imagen" class="thumb" /></td>
+        <td>
+          <button (click)="editarFish(i)" class="btn-edit">Editar</button>
+          <button (click)="eliminarFish(i)" class="btn-delete">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
