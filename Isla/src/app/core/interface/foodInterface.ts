@@ -5,8 +5,8 @@ import { Saucer } from '../models/saucer';
 @Injectable({
   providedIn: 'root'
 })  
-export class foodService {
-  /*private saucer = new BehaviorSubject<Saucer[]>([]);
+export class foodInterface {
+  private saucer = new BehaviorSubject<Saucer[]>([]);
   saucer$ = this.saucer.asObservable();
 
   constructor() {
@@ -43,5 +43,5 @@ export class foodService {
     );
     this.saucer.next(nuevos);
     localStorage.setItem('platillos', JSON.stringify(nuevos));
-  }*/
+  }
 }

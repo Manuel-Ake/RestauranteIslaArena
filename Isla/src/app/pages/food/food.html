@@ -1,21 +1,31 @@
-<<<<<<< HEAD
-<!-- food.html (VERSIÓN CORRECTA) -->
-<h1 class="titulo">SOY ALIMENTOS</h1>
-<h4 class="subtitulo">RIKOS GUISOS</h4>
-=======
-<h1 class="titulo">ALIMENTOS</h1>
->>>>>>> abedfa5a9bdda229cf4e2a3638ad452a3cd7ea2e
+<section class="food-section">
+  <div class="header-container">
+    <h1 class="titulo">ALIMENTOS</h1>
+    <p class="subtitulo">Deliciosos platillos para todos los gustos</p>
+  </div>
 
-<div class="menu-container">
-  <div *ngFor="let platillo of saucer" class="platillo-card">
-    <img [src]="platillo.imagen" alt="{{platillo.nombre}}">
-    <div class="platillo-info">
-      <h3>{{ platillo.nombre }}</h3>
-      <p>{{ platillo.descripcion }}</p>
-      <strong class="precio">{{ platillo.precio | currency }}</strong>
-      <button class="btn-agregar" (click)="agregarAlCarrito(platillo)">
-        Agregar al carrito
-      </button>
+  <div class="menu-container">
+    <div *ngFor="let platillo of saucer" class="platillo-card">
+      <div class="card-image">
+        <img [src]="platillo.imagen" alt="{{platillo.nombre}}" class="platillo-img">
+        <div class="card-badge">Nuevo</div>
+      </div>
+      
+      <div class="platillo-info">
+        <div class="info-header">
+          <h3 class="platillo-name">{{ platillo.nombre }}</h3>
+          <span class="precio-tag">{{ platillo.precio | currency }}</span>
+        </div>
+        
+        <p class="platillo-desc">{{ platillo.descripcion }}</p>
+        
+        <div class="card-actions">
+          <button class="btn-agregar" (click)="agregarAlCarrito(platillo)">
+            <span class="btn-icon">🛒</span>
+            Agregar al carrito
+          </button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>

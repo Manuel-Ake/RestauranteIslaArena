@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { foodService } from '../../core/service/foodService';
 import { Saucer } from '../../core/models/saucer';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { foodInterface } from '../../core/interface/foodInterface';
 
 @Component({
   selector: 'app-up-food-amd',
@@ -26,8 +26,8 @@ export class UpFoodAmd {
   precio!: number;
   imageBase64: string = '';
 
-  constructor(private foodservice: foodService){
-    this.foodservice.saucer$.subscribe(platillos => {
+  constructor(private foodinterface: foodInterface){
+    this.foodinterface.saucer$.subscribe(platillos => {
     this.ultimosPlatillos = platillos.slice(-5).reverse(); // Últimos 5, más reciente primero
     });
   }
@@ -44,13 +44,10 @@ export class UpFoodAmd {
   }
 
 
-// Agregar al constructor después de la suscripción
-
-
 // Método para eliminar platillo
 eliminarPlatillo(platillo: Saucer) {
   if (confirm('¿Estás seguro de que deseas eliminar este platillo?')) {
-    this.foodservice.eliminarPlatillo(platillo);
+    this.foodinterface.eliminarPlatillo(platillo);
   }
 }
 
@@ -74,28 +71,33 @@ eliminarPlatillo(platillo: Saucer) {
         precio: this.precio,
         imagen: this.imageBase64
       };
-      
-      this.foodservice.actualizarPlatillo(this.platilloEditando, platilloActualizado);
+      if(platilloActualizado.nombre == '' || platilloActualizado.descripcion == '' || !platilloActualizado.precio || platilloActualizado.imagen == ''){
+        alert("Rellene todos los espacios")
+      }else{
+      this.foodinterface.actualizarPlatillo(this.platilloEditando, platilloActualizado);
       this.esModoEdicion = false;
       alert("Platillo actualizado exitosamente");
+      }
     } else {
-      // Modo creación
+        // Modo creación
       const newsaucer: Saucer = {
         nombre: this.nombre,
         descripcion: this.descripcion,
         precio: this.precio,
         imagen: this.imageBase64
       };
-
-      this.foodservice.agregarPlatillo(newsaucer);
-      alert("Platillo subido exitosamente");
-    }
-    
-    // Limpiar formulario
-    this.nombre = '';
-    this.descripcion = '';
-    this.precio = 0;
-    this.imageBase64 = '';
-    this.platilloEditando = null;
+      if(newsaucer.nombre == '' || newsaucer.descripcion == '' || !newsaucer.precio || newsaucer.imagen == ''){
+        alert("Rellene todos los espacios")
+      }else{
+        this.foodinterface.agregarPlatillo(newsaucer);
+        alert("Platillo subido exitosamente");
+        // Limpiar formulario
+        this.nombre = '';
+        this.descripcion = '';
+        this.precio = 0;
+        this.imageBase64 = '';
+        this.platilloEditando = null;
+      } 
+    }   
   }
 }
