@@ -1,4 +1,5 @@
-export interface Drinkinterface {
+// app/interfaces/fish.interface.ts
+export interface Fish {
   nombre: string;
   descripcion: string;
   precio: number;

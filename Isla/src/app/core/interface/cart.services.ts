@@ -60,4 +60,11 @@ export class CartService {
       console.log('Carrito cargado desde localStorage:', this.cartItems);
     }
   }
+
+  removeFromCart(itemId: number) {
+  this.cartItems = this.cartItems.filter(item => item.id !== itemId);
+  this.updateCart();
+  console.log('Producto eliminado del carrito');
+  }
+
 }

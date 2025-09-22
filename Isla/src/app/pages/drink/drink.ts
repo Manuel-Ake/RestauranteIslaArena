@@ -1,84 +1,41 @@
-// src/app/drink/drink.ts
-import { Component, ElementRef, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import { Component} from '@angular/core';
+import { drinkService } from '../../core/service/DrinkService';
+import { Drinkinterface } from '../../core/interface/drink';
+import { CartService, CartItem } from '../../core/interface/cart.services';
+import { FormsModule } from '@angular/forms';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 @Component({
   selector: 'app-drink',
   standalone: true,
-  imports: [CommonModule],
+  imports: [FormsModule, CurrencyPipe, CommonModule],
   templateUrl: './drink.html',
   styleUrls: ['./drink.css']
 })
 export class Drink {
-  menuVisible = false;
-  private hideTimeout?: any;
+  saucer: Drinkinterface[] = [];
 
-  constructor(private elRef: ElementRef) {}
+      constructor(
+        private foodservice: drinkService,
+        private cartService: CartService
+      ) {}
 
-  // Toggle por clic
-  toggleMenu(event?: Event) {
-    if (event) event.stopPropagation();
-    this.menuVisible = !this.menuVisible;
-    if (this.menuVisible) this.clearHideTimeout();
-  }
+      ngOnInit(): void {
+        this.foodservice.saucer$.subscribe(data => {
+          console.log("Platillos recibidos en Alimentos: ", data);
+          this.saucer = data;
+        });
+      }
 
-  // Mostrar (ej. mouseenter)
-  showMenu() {
-    this.clearHideTimeout();
-    this.menuVisible = true;
-  }
+      agregarAlCarrito(platillo: Drinkinterface) {
+        const cartItem: CartItem = {
+          id: Date.now(), // ID generado automáticamente
+          nombre: platillo.nombre,
+          descripcion: platillo.descripcion,
+          precio: platillo.precio,
+          imagen: platillo.imagen
+        };
 
-  // Ocultar inmediatamente
-  hideMenuImmediate() {
-    this.clearHideTimeout();
-    this.menuVisible = false;
-  }
-
-  // Ocultar con pequeño retardo (para evitar flicker al mover el mouse)
-  hideMenuWithDelay(delay = 150) {
-    this.clearHideTimeout();
-    this.hideTimeout = setTimeout(() => (this.menuVisible = false), delay);
-  }
-
-  onMouseEnter() { this.showMenu(); }
-  onMouseLeave() { this.hideMenuWithDelay(); }
-
-  // Toggle para toque en móviles (touchstart)
-  onTouchStart(event: Event) {
-    event.stopPropagation();
-    this.toggleMenu();
-  }
-
-  // Manejo de teclado: Enter/Space abre, Escape cierra
-  onButtonKeydown(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
-      this.hideMenuImmediate();
-    }
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      this.toggleMenu();
-    }
-  }
-
-  select(option: string) {
-    console.log('Seleccionado:', option);
-    // aquí podrías emitir un evento o llamar a un servicio
-    this.hideMenuImmediate();
-  }
-
-  private clearHideTimeout() {
-    if (this.hideTimeout) {
-      clearTimeout(this.hideTimeout);
-      this.hideTimeout = undefined;
-    }
-  }
-
-  // Cerrar al hacer clic fuera
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: Event) {
-    const target = event.target as HTMLElement;
-    if (this.menuVisible && !this.elRef.nativeElement.contains(target)) {
-      this.hideMenuImmediate();
-    }
-  }
+        this.cartService.addToCart(cartItem);
+        alert(`${platillo.nombre} agregado al carrito!`);
+      }
 }

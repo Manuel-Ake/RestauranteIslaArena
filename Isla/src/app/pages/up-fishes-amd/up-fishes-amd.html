@@ -22,7 +22,26 @@
       </label>
       <input id="fileInput" type="file" (change)="OnfileSelected($event)" class="file-input">
       <p class="file-info">{{ imageBase64 ? 'Archivo seleccionado' : 'Sin archivos seleccionados' }}</p>
-    </div>
+  </div>
 
-  <button (click)="subirsaucer()" class="submit-btn">Subir Platillo</button>
+ <!-- Cambiar el texto del botón según el modo -->
+  <button (click)="subirsaucer()" class="submit-btn">
+    {{ esModoEdicion ? 'Actualizar Platillo' : 'Subir Platillo' }}
+  </button>
+      <!-- Agregar después del botón de submit -->
+  <div *ngIf="ultimosPlatillos.length > 0" class="ultimos-platillos">
+    <h3>Últimos 5 platillos agregados</h3>
+    <div *ngFor="let platillo of ultimosPlatillos" class="platillo-item">
+      <img [src]="platillo.imagen" alt="{{platillo.nombre}}" class="thumb">
+      <div class="platillo-info">
+        <h4>{{ platillo.nombre }}</h4>
+        <p>{{ platillo.descripcion }}</p>
+        <span class="precio">{{ platillo.precio | currency }}</span>
+      </div>
+      <div class="acciones">
+        <button (click)="editarPlatillo(platillo)" class="btn-editar">Editar</button>
+        <button (click)="eliminarPlatillo(platillo)" class="btn-eliminar">Eliminar</button>
+      </div>
+    </div>
+  </div>
 </div>

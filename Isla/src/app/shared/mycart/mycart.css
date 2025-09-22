@@ -45,10 +45,10 @@
   color: #856404;
   font-size: 0.95rem;
   cursor: pointer;
+  gap: 10px;
 }
 
 .alert-checkbox input {
-  margin-right: 10px;
   margin-top: 3px;
 }
 
@@ -60,7 +60,7 @@
   background: white;
   border: 2px solid #0a3d62;
   border-radius: 3px;
-  margin-right: 10px;
+  flex-shrink: 0;
 }
 
 .alert-checkbox input:checked + .checkmark::after {
@@ -70,6 +70,32 @@
   left: 2px;
   color: #0a3d62;
   font-weight: bold;
+}
+
+.alert-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.alert-line {
+  display: block;
+  line-height: 1.4;
+}
+
+.timer {
+  color: #d9534f;
+  font-size: 1.1em;
+  padding: 0 2px;
+  background: rgba(217, 83, 79, 0.1);
+  border-radius: 3px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
 }
 
 .cart-products {
@@ -84,12 +110,12 @@
   padding-bottom: 0.5rem;
 }
 
+/* ESTILOS DE TABLA FIXED - ESTO ES LO MÁS IMPORTANTE */
 .product-table {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   overflow: hidden;
   min-height: 200px;
-  position: relative;
 }
 
 .table-header {
@@ -99,12 +125,68 @@
   color: white;
   padding: 1rem;
   font-weight: 600;
+  gap: 1rem;
+  align-items: center;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+  gap: 1rem;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+/* Alineación específica para cada columna */
+.col-product {
+  text-align: left;
+  justify-self: start;
+}
+
+.col-price, .col-quantity, .col-total {
+  text-align: center;
+  justify-self: center;
+}
+
+.product-info h3 {
+  color: #0a3d62;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.product-info p {
+  color: #2f3640;
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.price, .total-price {
+  color: #2f3640;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.quantity {
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+  display: inline-block;
+  min-width: 40px;
 }
 
 .empty-cart-message {
   text-align: center;
   padding: 3rem 1rem;
   color: #666;
+  grid-column: 1 / -1;
 }
 
 .empty-icon {
@@ -213,9 +295,15 @@
     margin: 1rem;
   }
   
-  .table-header {
+  .table-header,
+  .table-row {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .col-product {
+    justify-self: center;
     text-align: center;
   }
   
@@ -229,5 +317,93 @@
   
   .empty-icon {
     font-size: 3rem;
+  }
+  
+  .product-info h3 {
+    font-size: 1.1rem;
+  }
+
+
+/* Botón de eliminar */
+  .btn-eliminar {
+  background: #ff4757;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.btn-eliminar:hover {
+  background: #ff3742;
+}
+
+/* Ajustar grid para la nueva columna */
+.table-header {
+  grid-template-columns: 3fr 1fr 1fr 1fr 0.5fr;
+}
+
+.table-row {
+  grid-template-columns: 3fr 1fr 1fr 1fr 0.5fr;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .table-header,
+  .table-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .btn-eliminar {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  }
+
+  /* Estilos para mensajes de tiempo */
+.tiempo-alerta {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.tiempo-alerta.critico {
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+  animation: pulse-alerta 0.5s infinite;
+}
+
+@keyframes pulse-alerta {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Mensaje de tiempo agotado */
+.tiempo-agotado {
+  background: #dc3545;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  animation: blink 1s infinite;
+}
+
+  @keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
   }
 }

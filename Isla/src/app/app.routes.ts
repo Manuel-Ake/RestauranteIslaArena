@@ -15,25 +15,27 @@ import { UpPromotionAmd } from './pages/up-promotion-amd/up-promotion-amd';
 import { UpCreatewaiterAmd } from './pages/up-createwaiter-amd/up-createwaiter-amd';
 import { UpCelebratesAmd } from './pages/up-celebrates-amd/up-celebrates-amd';
 import { Mycart } from './shared/mycart/mycart'; // ← IMPORTAR Mycart
+import { Fishes } from './pages/fishes/fishes';
 
 export const routes: Routes = [
   {
-    path: '', 
-    component: Header, 
+    path: '',
+    component: Header,
     children: [
       { path: 'Home', component: Home },
       { path: 'Drink', component: Drink },
+      {path:'fishes', component:Fishes},
       { path: 'Food', component: Food },
       { path: 'celebrate', component: Celebrates },
       { path: 'prmotion', component: Promotions },
-      { path: 'cart', component: Mycart } 
+      { path: 'cart', component: Mycart }
     ]
   },
 
   { path: 'Login', component: Login, pathMatch: 'full' },
   {
-    path: 'gestoramd', 
-    component: Gestoramd, 
+    path: 'gestoramd',
+    component: Gestoramd,
     children: [
       { path: 'upresumen', component: UpResumeAmd },
       { path: 'updrink', component: UpDrinkAmd },

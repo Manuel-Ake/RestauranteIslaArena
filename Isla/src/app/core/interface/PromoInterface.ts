@@ -1,4 +1,4 @@
-export interface Drinkinterface {
+export interface PromoInterface {
   nombre: string;
   descripcion: string;
   precio: number;

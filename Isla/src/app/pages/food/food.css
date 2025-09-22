@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Estilos generales */
 .food-section {
   padding: 20px;
@@ -28,20 +29,44 @@
 .subtitulo {
   font-size: 1.2rem;
   font-weight: 400;
-  color: #7f8c8d;
-  margin-bottom: 30px;
+=======
+/* Títulos */
+.titulo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 1rem 0;
+  color: #2c3e50;
 }
 
-/* Contenedor de tarjetas */
+.subtitulo {
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+>>>>>>> 14747be69fb056d6b51e209e4d3778e787620d63
+  color: #7f8c8d;
+  letter-spacing: 1.5px;
+}
+
+/* Contenedor de platillos */
 .menu-container {
   display: grid;
+<<<<<<< HEAD
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
   padding: 0 20px;
+=======
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 0.8rem;
+  max-width: 1100px; /* Evita que se vea muy extendido en pantallas grandes */
+  margin: 0 auto;
+>>>>>>> 14747be69fb056d6b51e209e4d3778e787620d63
 }
 
-/* Tarjetas de platillos */
+/* Tarjeta */
 .platillo-card {
+<<<<<<< HEAD
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
@@ -65,10 +90,31 @@
 .platillo-img {
   width: 100%;
   height: 100%;
+=======
+  background: #ffffff;
+  border-radius: 0.9rem;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.platillo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Imagen */
+.platillo-card img {
+  width: 100%;
+  height: 150px;
+>>>>>>> 14747be69fb056d6b51e209e4d3778e787620d63
   object-fit: cover;
   transition: transform 0.5s ease;
 }
 
+<<<<<<< HEAD
 .platillo-card:hover .platillo-img {
   transform: scale(1.05);
 }
@@ -137,8 +183,47 @@
   font-weight: 600;
   padding: 12px 20px;
   border-radius: 12px;
+=======
+/* Información */
+.platillo-info {
+  padding: 0.8rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.platillo-info h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+  color: #34495e;
+}
+
+.platillo-info p {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+  margin-bottom: 0.5rem;
+}
+
+.precio {
+  font-size: 1rem;
+  color: #27ae60;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+  display: inline-block;
+}
+
+/* Botón */
+.btn-agregar {
+  background-color: #3498db;
+  color: #fff;
+  font-weight: 600;
+>>>>>>> 14747be69fb056d6b51e209e4d3778e787620d63
   border: none;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.6rem;
   cursor: pointer;
+<<<<<<< HEAD
   transition: all 0.3s ease;
 }
 
@@ -171,10 +256,36 @@
   
   .precio-tag {
     align-self: flex-start;
+=======
+  transition: background 0.3s ease, transform 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.btn-agregar:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.btn-agregar:active {
+  transform: scale(0.97);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .titulo {
+    font-size: 1.5rem;
+  }
+  .subtitulo {
+    font-size: 0.9rem;
+  }
+  .platillo-card img {
+    height: 130px;
+>>>>>>> 14747be69fb056d6b51e209e4d3778e787620d63
   }
 }
 
 @media (max-width: 480px) {
+<<<<<<< HEAD
   .food-section {
     padding: 15px;
   }
@@ -218,3 +329,12 @@
   outline: 2px solid #2c3e50;
   outline-offset: 2px;
 }
+=======
+  .menu-container {
+    grid-template-columns: 1fr;
+  }
+  .platillo-card img {
+    height: 120px;
+  }
+}
+>>>>>>> 14747be69fb056d6b51e209e4d3778e787620d63
