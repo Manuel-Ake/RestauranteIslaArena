@@ -1,10 +1,11 @@
+import { foodInterface } from './../../core/interface/foodInterface';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { foodInterface } from '../../core/interface/foodInterface';// Cambiado
 import { Saucer } from '../../core/models/saucer';// Cambiado
 // Ajusta esta ruta según donde esté realmente cart.service.ts
 import { CartService, CartItem } from '../../core/interface/cart.services';
+import { FoodService } from '../../core/service/foodService';
 
 @Component({
   selector: 'app-food',
@@ -13,32 +14,29 @@ import { CartService, CartItem } from '../../core/interface/cart.services';
   styleUrl: './food.css'
 })
 export class Food implements OnInit {
-  saucer: foodInterface[] = []; // Cambiado
-  
-  constructor(
-    private saucerService: Saucer, // Cambiado
-    private cartService: CartService
-  ) {}
+  saucer: foodInterface[] = [];
 
-  ngOnInit(): void {
-    this.saucerService.platillo$.subscribe(data => { // Cambiado
-      console.log("Platillos recibidos en Alimentos: ", data);
-      this.saucer = data;
-    });
-  }
+    constructor(
+      private foodservice: FoodService,
+      private cartService: CartService
+    ) {}
 
-  agregarAlCarrito(platillo: foodInterface) { // Cambiado
-    
-    const cartItem: CartItem = {
-      id: Date.now(), // ID generado automáticamente
-      nombre: platillo.nombre,
-      descripcion: platillo.descripcion,
-      precio: platillo.precio,
-      imagen: platillo.imagen
-    };
-    
+    ngOnInit(): void {
+      this.foodservice.saucer$.subscribe(data => {
+        console.log("Platillos recibidos en Alimentos: ", data);
+        this.saucer = data;
+      });
+    }
+
+    agregarAlCarrito(platillo: foodInterface) {
+      const cartItem: CartItem = {
+        id: Date.now(),
+        nombre: platillo.nombre,
+        descripcion: platillo.descripcion,
+        precio: platillo.precio,
+        imagen: platillo.imagen
+      };
       this.cartService.addToCart(cartItem);
       alert(`${platillo.nombre} agregado al carrito!`);
-    
-  }
+    }
 }
