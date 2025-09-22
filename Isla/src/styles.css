@@ -118,6 +118,55 @@ button{
   transform: translateY(-2px);
 }
 
+/*===otro globales===*/
+/* Títulos */
+.titulo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 1rem 0;
+  color: #2c3e50;
+}
+
+.subtitulo {
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #7f8c8d;
+  letter-spacing: 1.5px;
+}
+
+/* Botón */
+.btn-agregar {
+  background-color: #3498db;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.btn-agregar:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.btn-agregar:active {
+  transform: scale(0.97);
+}
+
+
+.precio {
+  font-size: 1rem;
+  color: #27ae60;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+  display: inline-block;
+}
+
 
 /* ===== RESPONSIVO ===== */
 @media (max-width: 992px) {
