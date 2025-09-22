@@ -1,30 +1,47 @@
 
 import { Injectable } from '@angular/core';
 import { Fish } from '../interface/Fish';
-
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class FishesService {
-  private fishes: Fish[] = [];
+  private saucer = new BehaviorSubject<Fish[]>([]);
+    saucer$ = this.saucer.asObservable();
 
-  getFishes(): Fish[] {
-    return this.fishes;
-  }
-
-  addFish(fish: Fish): void {
-    this.fishes.push(fish);
-  }
-
-  updateFish(index: number, fish: Fish): void {
-    if (index >= 0 && index < this.fishes.length) {
-      this.fishes[index] = fish;
+    constructor() {
+      const guardados = localStorage.getItem('platillos');
+      if (guardados) {
+        this.saucer.next(JSON.parse(guardados));
+      }
     }
-  }
 
-  deleteFish(index: number): void {
-    if (index >= 0 && index < this.fishes.length) {
-      this.fishes.splice(index, 1);
+    agregarPlatillo(saucer: Fish) {
+      const actual = this.saucer.getValue();
+      const nuevos = [...actual, saucer];
+      this.saucer.next(nuevos);
+      localStorage.setItem('platillos', JSON.stringify(nuevos));
     }
-  }
+      // Agregar estos métodos a la clase foodService
+    eliminarPlatillo(saucer: Fish) {
+      const actual = this.saucer.getValue();
+      const nuevos = actual.filter(p =>
+        p.nombre !== saucer.nombre ||
+        p.descripcion !== saucer.descripcion ||
+        p.precio !== saucer.precio
+      );
+      this.saucer.next(nuevos);
+      localStorage.setItem('platillos', JSON.stringify(nuevos));
+    }
+
+    actualizarPlatillo(original: Fish, actualizado: Fish) {
+      const actual = this.saucer.getValue();
+      const nuevos = actual.map(p =>
+        (p.nombre === original.nombre &&
+        p.descripcion === original.descripcion &&
+        p.precio === original.precio) ? actualizado : p
+      );
+      this.saucer.next(nuevos);
+      localStorage.setItem('platillos', JSON.stringify(nuevos));
+    }
 }

@@ -1,1 +1,47 @@
-<p>up-drink-amd works!</p>
+<div class="Subir_p">
+  <h2>SUBIR PLATILLOS</h2>
+
+  <div class="form-row">
+      <div class="form-group">
+      <input type="text" [(ngModel)]="nombre" placeholder="Nombre del platillo" class="form-input">
+    </div>
+
+    <div class="form-group">
+      <input type="text" [(ngModel)]="descripcion" placeholder="Descripción del platillo" class="form-input">
+    </div>
+
+    <div class="form-group">
+      <input type="number" [(ngModel)]="precio" placeholder="Precio del platillo" class="form-input">
+    </div>
+  </div>
+
+  <div class="file-upload-container">
+      <label for="fileInput" class="file-upload-label">
+        <span class="upload-icon">📁</span>
+        <span class="upload-text">Seleccionar archivo</span>
+      </label>
+      <input id="fileInput" type="file" (change)="OnfileSelected($event)" class="file-input">
+      <p class="file-info">{{ imageBase64 ? 'Archivo seleccionado' : 'Sin archivos seleccionados' }}</p>
+  </div>
+
+ <!-- Cambiar el texto del botón según el modo -->
+  <button (click)="subirsaucer()" class="submit-btn">
+    {{ esModoEdicion ? 'Actualizar Platillo' : 'Subir Platillo' }}
+  </button>
+      <!-- Agregar después del botón de submit -->
+  <div *ngIf="ultimosPlatillos.length > 0" class="ultimos-platillos">
+    <h3>Últimos 5 platillos agregados</h3>
+    <div *ngFor="let platillo of ultimosPlatillos" class="platillo-item">
+      <img [src]="platillo.imagen" alt="{{platillo.nombre}}" class="thumb">
+      <div class="platillo-info">
+        <h4>{{ platillo.nombre }}</h4>
+        <p>{{ platillo.descripcion }}</p>
+        <span class="precio">{{ platillo.precio | currency }}</span>
+      </div>
+      <div class="acciones">
+        <button (click)="editarPlatillo(platillo)" class="btn-editar">Editar</button>
+        <button (click)="eliminarPlatillo(platillo)" class="btn-eliminar">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>

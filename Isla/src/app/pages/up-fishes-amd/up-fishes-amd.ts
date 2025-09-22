@@ -10,75 +10,90 @@ import { Fish } from '../../core/interface/Fish';
   styleUrl: './up-fishes-amd.css'
 })
 export class UpFishesAmd {
-  nombre = '';
-  descripcion = '';
-  precio!: number;
-  imageBase64: string = '';
-  editIndex: number | null = null;
+  activeSection: String = 'upfood';
+     // Agregar estas propiedades a la clase
+   ultimosPlatillos: Fish[] = [];
+   platilloEditando: Fish | null = null;
+   esModoEdicion: boolean = false;
+   setSection(section: string) {
+     this.activeSection = section;
 
-  // Inyectar el servicio
-  constructor(private fishesService: FishesService) {}
+   }
+   nombre = '';
+   descripcion = '';
+   precio!: number;
+   imageBase64: string = '';
 
-  OnfileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imageBase64 = reader.result as string;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
+   constructor(private foodservice: FishesService){
+     this.foodservice.saucer$.subscribe(platillos => {
+     this.ultimosPlatillos = platillos.slice(-5).reverse(); // Últimos 5, más reciente primero
+     });
+   }
 
-  subirFish() {
-    if (!this.nombre || !this.descripcion || !this.precio || !this.imageBase64) {
-      alert('Por favor, completa todos los campos.');
-      return;
-    }
+   OnfileSelected(event: any){
+     const file = event.target.files[0];
+     if(file){
+       const reader = new FileReader();
+       reader.onload = () =>{
+         this.imageBase64 = reader.result as string;
+       };
+       reader.readAsDataURL(file);
+     }
+   }
 
-    const nuevoFish: Fish = {
-      nombre: this.nombre,
-      descripcion: this.descripcion,
-      precio: this.precio,
-      imagen: this.imageBase64
-    };
 
-    if (this.editIndex !== null) {
-      this.fishesService.updateFish(this.editIndex, nuevoFish);
-      this.editIndex = null;
-    } else {
-      this.fishesService.addFish(nuevoFish);
-    }
+ // Agregar al constructor después de la suscripción
 
-    this.limpiarFormulario();
-  }
 
-  editarFish(index: number) {
-    const fishes = this.fishesService.getFishes();
-    if (index >= 0 && index < fishes.length) {
-      const fish = fishes[index];
-      this.nombre = fish.nombre;
-      this.descripcion = fish.descripcion;
-      this.precio = fish.precio;
-      this.imageBase64 = fish.imagen;
-      this.editIndex = index;
-    }
-  }
+ // Método para eliminar platillo
+ eliminarPlatillo(platillo: Fish) {
+   if (confirm('¿Estás seguro de que deseas eliminar este platillo?')) {
+     this.foodservice.eliminarPlatillo(platillo);
+   }
+ }
 
-  eliminarFish(index: number) {
-    this.fishesService.deleteFish(index);
-    this.limpiarFormulario();
-  }
+   // Método para editar platillo
+   editarPlatillo(platillo: Fish) {
+     this.platilloEditando = {...platillo};
+     this.nombre = platillo.nombre;
+     this.descripcion = platillo.descripcion;
+     this.precio = platillo.precio;
+     this.imageBase64 = platillo.imagen;
+     this.esModoEdicion = true;
+   }
 
-  limpiarFormulario() {
-    this.nombre = '';
-    this.descripcion = '';
-    this.precio = 0;
-    this.imageBase64 = '';
-  }
+   // Modificar el método subirsaucer para manejar edición
+   subirsaucer() {
+     if (this.esModoEdicion && this.platilloEditando) {
+       // Modo edición
+       const platilloActualizado: Fish = {
+         nombre: this.nombre,
+         descripcion: this.descripcion,
+         precio: this.precio,
+         imagen: this.imageBase64
+       };
 
-  // Obtener la lista de fishes para mostrar en la tabla
-  get fishes() {
-    return this.fishesService.getFishes();
-  }
+       this.foodservice.actualizarPlatillo(this.platilloEditando, platilloActualizado);
+       this.esModoEdicion = false;
+       alert("Platillo actualizado exitosamente");
+     } else {
+       // Modo creación
+       const newsaucer: Fish = {
+         nombre: this.nombre,
+         descripcion: this.descripcion,
+         precio: this.precio,
+         imagen: this.imageBase64
+       };
+
+       this.foodservice.agregarPlatillo(newsaucer);
+       alert("Platillo subido exitosamente");
+     }
+
+     // Limpiar formulario
+     this.nombre = '';
+     this.descripcion = '';
+     this.precio = 0;
+     this.imageBase64 = '';
+     this.platilloEditando = null;
+   }
 }

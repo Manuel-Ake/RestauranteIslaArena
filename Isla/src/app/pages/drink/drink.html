@@ -1,38 +1,17 @@
-<!-- Hero principal -->
-<div class="hero">
-  <div class="hero-content">
-    <h1>SIEMPRE REFRESCANTE</h1>
-    <p>Ven y pruba nuestros diferentes bebidas, tenemos refrescos, jugos natuarles y por su puesto lo que te gusta</p>
-    <button>Comprar ahora</button>
-  </div>
+<h1 class="titulo">SOY ALIMENTOS</h1>
+<h4 class="subtitulo">RIKOS GUISOS</h4>
+<h1 class="titulo">ALIMENTOS</h1>
 
-  <div class="hero-image">
-    <img src="img/Fondo.png" alt="Bebidas Frest">
-  </div>
-</div>
-
-<!-- Catálogo de bebidas -->
-<div class="catalogo">
-  <h2>Nuestras Bebidas</h2>
-  <div class="catalogo-grid">
-    
-    <div class="card">
-      <img src="img/refrescos.jpg" alt="Refrescos">
-      <h3>Refrescos</h3>
-      <p>Clásicos y refrescantes sabores.</p>
+<div class="menu-container">
+  <div *ngFor="let platillo of saucer" class="platillo-card">
+    <img [src]="platillo.imagen" alt="{{platillo.nombre}}">
+    <div class="platillo-info">
+      <h3>{{ platillo.nombre }}</h3>
+      <p>{{ platillo.descripcion }}</p>
+      <strong class="precio">{{ platillo.precio | currency }}</strong>
+      <button class="btn-agregar" (click)="agregarAlCarrito(platillo)">
+        Agregar al carrito
+      </button>
     </div>
-    
-    <div class="card">
-      <img src="img/naturales.jpg" alt="Naturales">
-      <h3>Bebidas Naturales</h3>
-      <p>Jugos y extractos naturales para un día saludable.</p>
-    </div>
-    
-    <div class="card">
-      <img src="img/Alcol.png" alt="Especiales">
-      <h3>Bebidas Especiales</h3>
-      <p>Mezclas únicas para ocasiones especiales.</p>
-    </div>
-
   </div>
 </div>
