@@ -1,17 +1,17 @@
 <div class="Subir_p">
-  <h2>SUBIR PLATILLOS</h2>
+  <h2>SUBIR BEBIDAS</h2>
 
   <div class="form-row">
       <div class="form-group">
-      <input type="text" [(ngModel)]="nombre" placeholder="Nombre del platillo" class="form-input">
+      <input type="text" [(ngModel)]="nombre" placeholder="Nombre de la bebida" class="form-input">
     </div>
 
     <div class="form-group">
-      <input type="text" [(ngModel)]="descripcion" placeholder="Descripción del platillo" class="form-input">
+      <input type="text" [(ngModel)]="descripcion" placeholder="Descripción de la bebida" class="form-input">
     </div>
 
     <div class="form-group">
-      <input type="number" [(ngModel)]="precio" placeholder="Precio del platillo" class="form-input">
+      <input type="number" [(ngModel)]="precio" placeholder="Precio de la bebida" class="form-input">
     </div>
   </div>
 
@@ -26,7 +26,7 @@
 
  <!-- Cambiar el texto del botón según el modo -->
   <button (click)="subirsaucer()" class="submit-btn">
-    {{ esModoEdicion ? 'Actualizar Platillo' : 'Subir Platillo' }}
+    {{ esModoEdicion ? 'Actualizar bebida' : 'Subir Bebida' }}
   </button>
       <!-- Agregar después del botón de submit -->
   <div *ngIf="ultimosPlatillos.length > 0" class="ultimos-platillos">
