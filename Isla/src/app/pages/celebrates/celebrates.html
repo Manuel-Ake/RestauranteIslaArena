@@ -35,7 +35,6 @@
                    [(ngModel)]="fechaNacimiento" required>
           </div>
 
-
           <div class="form-group">
             <label for="telefono">Teléfono *</label>
             <input type="tel" id="telefono" name="telefono"
@@ -133,7 +132,7 @@
         <div *ngIf="!esSuCumpleanios" class="error-content">
           <h2>¡Gracias por registrarte, {{ nombre }}!</h2>
           <p>Hoy no es tu cumpleaños, pero te esperamos cuando sea tu día especial para celebrar juntos.</p>
-          <p>Te contactaremos al correo <strong>{{ email }}</strong> cuando se acerque tu fecha de cumpleaños.</p>
+          <p>Visítanos en tu cumpleaños para recibir tu regalo especial.</p>
           
           <button class="btn-retry" (click)="reiniciarFormulario()">
             Intentar con otra fecha
